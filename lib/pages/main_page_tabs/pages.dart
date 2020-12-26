@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_page/models/Course_model.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class FirstPage extends StatelessWidget {
@@ -7,54 +8,54 @@ class FirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: ListView(children: [
-          _scoreShow(),
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 36),
-              child: Column(children: [
-                this._modify("기이수", "편집"),
-                SizedBox(
-                  height: 18,
-                ),
-                ProgressBar(
-                  labelText: "교양필수",
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                ProgressBar(
-                  labelText: "교양필수1",
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                ProgressBar(
-                  labelText: "학문기초교양",
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                ProgressBar(
-                  labelText: "전공필수",
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                ProgressBar(
-                  labelText: "전공선택",
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                ProgressBar(
-                  labelText: "교양선택2",
-                ),
-                SizedBox(
-                  height: 73,
-                ),
-                this._modify("공통졸업요건", "편집"),
-                this._bookReq(),
-              ]))
-        ]));
+      _scoreShow(),
+      Container(
+          padding: EdgeInsets.symmetric(horizontal: 36),
+          child: Column(children: [
+            this._modify("기이수", "편집"),
+            SizedBox(
+              height: 18,
+            ),
+            ProgressBar(
+              labelText: "교양필수",
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ProgressBar(
+              labelText: "교양필수1",
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ProgressBar(
+              labelText: "학문기초교양",
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ProgressBar(
+              labelText: "전공필수",
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ProgressBar(
+              labelText: "전공선택",
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ProgressBar(
+              labelText: "교양선택2",
+            ),
+            SizedBox(
+              height: 73,
+            ),
+            this._modify("공통졸업요건", "편집"),
+            this._bookReq(),
+          ]))
+    ]));
   }
 
   Widget _scoreShow() {
@@ -104,19 +105,19 @@ class FirstPage extends StatelessWidget {
           columns: [
             DataColumn(
                 label: Text(
-                  '구분',
-                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
-                )),
+              '구분',
+              style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+            )),
             DataColumn(
                 label: Text(
-                  '인증권수',
-                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
-                )),
+              '인증권수',
+              style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+            )),
             DataColumn(
                 label: Text(
-                  '이수권수',
-                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
-                )),
+              '이수권수',
+              style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+            )),
           ],
           rows: [
             DataRow(cells: [
@@ -206,69 +207,72 @@ class SecondPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 36),
                 child: SafeArea(
                     child: ListView(children: [
-                      SizedBox(
-                        height: 27,
-                      ),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '현재 나의 학기는?',
-                              style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              '학기',
-                              style: TextStyle(
-                                  fontSize: 20.0, fontWeight: FontWeight.bold),
-                            )
-                          ]),
-                      SizedBox(
-                        height: 20,
-                      ),
+                  SizedBox(
+                    height: 27,
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '현재 나의 학기는?',
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '학기',
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    '전공',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Text(
-                        '전공',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        '수강하고 있는 과목이 없습니다',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey),
                       ),
-                      Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '수강하고 있는 과목이 없습니다',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey),
-                              ),
-                            ],
-                          )),
-                      SizedBox(
-                        height: 24,
-                      ),
+                    ],
+                  )),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    '교양',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Text(
-                        '교양',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        '수강하고 있는 과목이 없습니다',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey),
                       ),
-                      Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '수강하고 있는 과목이 없습니다',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey),
-                              ),
-                            ],
-                          )),
+                    ],
+                  )),
+                  SizedBox(
+                    height: 110,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       SizedBox(
-                        height: 110,
-                      ),
-                      SizedBox(
-                        height: 37,
                         width: 155,
+                        height: 37,
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
@@ -279,8 +283,10 @@ class SecondPage extends StatelessWidget {
                           child: Text("이수할 과목 추가".toUpperCase(),
                               style: TextStyle(fontSize: 14)),
                         ),
-                      ),
-                    ])))));
+                      )
+                    ],
+                  )
+                ])))));
   }
 }
 
@@ -299,9 +305,18 @@ class ThirdPage extends StatelessWidget {
                   Text(
                     '전공선택',
                     style:
-                    TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),
                 ]))));
+  }
+}
+
+class dummyBox extends StatelessWidget {
+  List<CourseModel> courseList = [CourseModel.dummy()];
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea();
   }
 }
 

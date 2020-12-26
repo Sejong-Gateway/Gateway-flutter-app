@@ -46,8 +46,8 @@ class mainpage extends StatelessWidget {
               child: TabBarView(
                 children: [
                   FirstPage(),
-                  Icon(Icons.directions_transit),
                   SecondPage(),
+                  Icon(Icons.directions_transit),
                   Drawer(child: Container(
                     color: Colors.white,
                   ),),
