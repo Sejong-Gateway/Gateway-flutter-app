@@ -2,23 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-//purple custom 실행 오류
-extension HexColor on Color {
-  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
-  static Color fromHex(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-
-  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0')}'
-      '${red.toRadixString(16).padLeft(2, '0')}'
-      '${green.toRadixString(16).padLeft(2, '0')}'
-      '${blue.toRadixString(16).padLeft(2, '0')}';
-}
+//Gateway 색 적용
+const GateWaycolor = Color(0xff6c63ff);
 
 //LoginPage를 위한 statelesswidget
 class LoginPage extends StatelessWidget {
@@ -35,55 +20,9 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-//로그인 유지 항목을 위한 StayedLogin
-class StayedLogin extends StatefulWidget {
-  @override
-  _StayedLogin createState() => new _StayedLogin();
-}
-
-class _StayedLogin extends State<StayedLogin> {
-  bool checkboxValue = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.fromLTRB(240, 0, 0, 0),
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  checkboxValue = !checkboxValue;
-                });
-              },
-              child: checkboxValue
-                  ? Icon(
-                Icons.check_circle,
-                color: Colors.deepPurpleAccent,
-                size: 22,
-              )
-                  : Icon(
-                Icons.check_circle,
-                color: Colors.grey,
-                size: 22,
-              ),
-            ),
-            SizedBox(width: 8),
-            Text("로그인 유지",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                )),
-          ],
-        ));
-  }
-}
-
 //Login page 확장
 extension on LoginPage {
-  Widget get _appBar =>
-      AppBar(
+  Widget get _appBar => AppBar(
         toolbarHeight: 44,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -92,26 +31,27 @@ extension on LoginPage {
   Widget _body(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height,
+        height: MediaQuery.of(context).size.height,
         padding: EdgeInsets.symmetric(horizontal: 36),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 67),
-            SvgPicture.asset('asset/Group155.svg', color: Colors.deepPurpleAccent),
+            Container(
+                width: 81,
+                height: 66,
+                child: SvgPicture.asset('asset/Group155.svg',
+                    color: GateWaycolor)),
             Expanded(
               flex: 45,
               child: Container(),
             ),
-            this._textField("학번", "학번을 입력해주세요"),
+            this._textField("학번", "학번을 입력해주세요", false),
             Expanded(
               flex: 45,
               child: Container(),
             ),
-            this._passwordtextField("비밀번호", "비밀번호를 입력해주세요"),
+            this._textField("비밀번호", "비밀번호를 입력해주세요", true),
             Expanded(
               flex: 19,
               child: Container(),
@@ -133,7 +73,7 @@ extension on LoginPage {
                       fontSize: 16,
                       color: Colors.white),
                 ),
-                color: Colors.deepPurpleAccent,
+                color: GateWaycolor,
               ),
             ),
             Expanded(
@@ -150,33 +90,11 @@ extension on LoginPage {
       ),
     );
   }
+
   //입력 받을 때 사용 widget
-  Widget _textField(String labelText, String hintText) {
-    bool _obscureText = true;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300)),
-        )
-      ],
-    );
-  }
+
   //비밀번호 입력 받을 때 위젯, obscureText사용
-  Widget _passwordtextField(String labelText, String hintText) {
-    bool _obscureText = true;
+  Widget _textField(String labelText, String hintText, bool activation) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -194,11 +112,12 @@ extension on LoginPage {
                 color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
             contentPadding: EdgeInsets.zero,
           ),
-          obscureText: _obscureText,
-        )
+          obscureText: activation,
+        ),
       ],
     );
   }
+
   //회원 가입 페이지 위한 버튼
   Widget _signup() {
     return Row(
@@ -216,10 +135,56 @@ extension on LoginPage {
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-                  color: Colors.deepPurpleAccent)),
+                  color: GateWaycolor)),
           onTap: () => {},
-        )
+        ),
       ],
+    );
+  }
+}
+
+//로그인 유지 항목을 위한 StayedLogin
+class StayedLogin extends StatefulWidget {
+  @override
+  _StayedLogin createState() => new _StayedLogin();
+}
+
+class _StayedLogin extends State<StayedLogin> {
+  bool checkboxValue = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                checkboxValue = !checkboxValue;
+              });
+            },
+            child: checkboxValue
+                ? Icon(
+                    Icons.check_circle,
+                    color: GateWaycolor,
+                    size: 22,
+                  )
+                : Icon(
+                    Icons.check_circle,
+                    color: Colors.grey,
+                    size: 22,
+                  ),
+          ),
+          SizedBox(width: 8),
+          Text("로그인 유지",
+              style: TextStyle(
+                fontSize: 14,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.bold,
+              )),
+        ],
+      ),
     );
   }
 }
