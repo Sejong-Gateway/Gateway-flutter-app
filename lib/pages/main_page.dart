@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/pages/main_page_tabs//pages.dart';
+import 'package:login_page/main_page_tabs/current_course_tab.dart';
+import 'package:login_page/main_page_tabs/current_tab.dart';
+
 
 class mainpage extends StatelessWidget {
   @override
@@ -45,9 +47,9 @@ class mainpage extends StatelessWidget {
               color: Colors.white,
               child: TabBarView(
                 children: [
-                  FirstPage(),
-                  SecondPage(),
-                  Icon(Icons.directions_transit),
+                  CurrentStatusTab(),
+                  CurrentCourseTab(),
+                  CurrentCourseTab(),
                   Drawer(child: Container(
                     color: Colors.white,
                   ),),
