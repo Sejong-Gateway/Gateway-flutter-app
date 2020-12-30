@@ -292,5 +292,4 @@ extension on SignupPage {
       ],
     );
   }
-//회원 가입 페이지 위한 버튼
 }
