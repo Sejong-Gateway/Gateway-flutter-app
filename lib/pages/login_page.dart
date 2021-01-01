@@ -23,10 +23,10 @@ class LoginPage extends StatelessWidget {
 //Login page 확장
 extension on LoginPage {
   Widget get _appBar => AppBar(
-    toolbarHeight: 44,
-    backgroundColor: Colors.white,
-    elevation: 0,
-  );
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      );
 
   Widget _body(BuildContext context) {
     return SafeArea(
@@ -38,10 +38,11 @@ extension on LoginPage {
           children: [
             SizedBox(height: 67),
             Container(
-                width: 81,
-                height: 66,
-                child: SvgPicture.asset('asset/Group155.svg',
-                    color: GateWaycolor)),
+              width: 81,
+              height: 66,
+              child:
+                  SvgPicture.asset('asset/Group155.svg', color: GateWaycolor),
+            ),
             Expanded(
               flex: 45,
               child: Container(),
@@ -166,15 +167,15 @@ class _StayedLogin extends State<StayedLogin> {
             },
             child: checkboxValue
                 ? Icon(
-              Icons.check_circle,
-              color: GateWaycolor,
-              size: 22,
-            )
+                    Icons.check_circle,
+                    color: GateWaycolor,
+                    size: 22,
+                  )
                 : Icon(
-              Icons.check_circle,
-              color: Colors.grey,
-              size: 22,
-            ),
+                    Icons.check_circle,
+                    color: Colors.grey,
+                    size: 22,
+                  ),
           ),
           SizedBox(width: 8),
           Text("로그인 유지",

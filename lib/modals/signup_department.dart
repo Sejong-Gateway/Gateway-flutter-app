@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class Modal{
+class departmentModal{
   String dropValue;
   mainBottomSheet(BuildContext context){
     showModalBottomSheet(
@@ -10,9 +10,9 @@ class Modal{
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _createTile(context, 'Message', Icons.message, _action1),
-              _createTile(context, 'Take Photo', Icons.camera_alt, _action2),
-              _createTile(context, 'My Images', Icons.photo_library, _action3),
+              _createTile(context, '기린', Icons.keyboard_arrow_right, _action1),
+              _createTile(context, '토끼', Icons.keyboard_arrow_right, _action2),
+              _createTile(context, '거북이', Icons.keyboard_arrow_right, _action3),
             ],
           );
         }

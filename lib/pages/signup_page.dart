@@ -17,20 +17,20 @@ class SignupPage extends StatelessWidget {
   }
 }
 
-class CourseSelect extends StatefulWidget {
+class CourseSelection extends StatefulWidget {
   String depsemtype;
   String selectValue = "골라주세요";
   bool initialState = true;
 
-  CourseSelect({Key key, @required this.depsemtype}) : super(key: key);
+  CourseSelection({Key key, @required this.depsemtype}) : super(key: key);
 
   @override
   _CourseSelectState createState() => new _CourseSelectState();
 }
 
-class _CourseSelectState extends State<CourseSelect> {
-  Modal modal1 = new Modal();
-  Modal2 modal2 = new Modal2();
+class _CourseSelectState extends State<CourseSelection> {
+  departmentModal depModal = new departmentModal();
+  semesterModal semModal = new semesterModal();
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +41,17 @@ class _CourseSelectState extends State<CourseSelect> {
         buttonColor: Colors.white,
         child: RaisedButton(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-              side: BorderSide(color: Color(0xffcccccc))),
+            borderRadius: BorderRadius.circular(5),
+            side: BorderSide(
+              color: Color(0xffcccccc),
+            ),
+          ),
           elevation: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                widget.depsemtype=="1" ? "전공을 선택해주세요" : "이수 학기를 선택해주세요",
+                widget.depsemtype == "1" ? "전공을 선택해주세요" : "이수 학기를 선택해주세요",
                 style: TextStyle(
                     color:
                         widget.initialState ? Color(0xffdbdbdb) : Colors.black,
@@ -59,8 +62,8 @@ class _CourseSelectState extends State<CourseSelect> {
           onPressed: () => {
             widget.initialState = false,
             widget.depsemtype == "1"
-                ? widget.selectValue = modal1.mainBottomSheet(context)
-                : widget.selectValue = modal2.mainBottomSheet(context)
+                ? widget.selectValue = depModal.mainBottomSheet(context)
+                : widget.selectValue = semModal.mainBottomSheet(context)
           },
         ),
       ),
@@ -189,7 +192,7 @@ extension on SignupPage {
               flex: 13,
               child: Container(),
             ),
-            CourseSelect(
+            CourseSelection(
               depsemtype: "1",
             ),
             Expanded(
@@ -227,39 +230,16 @@ extension on SignupPage {
               flex: 13,
               child: Container(),
             ),
-            CourseSelect(
+            CourseSelection(
               depsemtype: "2",
             ),
             Expanded(
-              flex: 19,
+              flex: 60,
               child: Container(),
             ),
+            this._verifyButton(true),
             Expanded(
-              flex: 69,
-              child: Container(),
-            ),
-            ButtonTheme(
-              height: 48,
-              minWidth: 400,
-              child: RaisedButton(
-                onPressed: () {},
-                child: Text(
-                  "회원가입",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.grey),
-                ),
-                color: Colors.white70,
-                elevation: 0.01,
-              ),
-            ),
-            Expanded(
-              flex: 33,
-              child: Container(),
-            ),
-            Expanded(
-              flex: 170,
+              flex: 99,
               child: Container(),
             ),
           ],
@@ -290,6 +270,31 @@ extension on SignupPage {
           obscureText: activation,
         )
       ],
+    );
+  }
+
+  Widget _verifyButton(bool inputChecks) {
+    return ButtonTheme(
+      height: 48,
+      minWidth: 400,
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+          side: BorderSide(
+            color: Color(0xff6c63ff),
+          ),
+        ),
+        onPressed: () {},
+        child: Text(
+          "회원가입",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: inputChecks == true ? Colors.white : Colors.grey),
+        ),
+        color: inputChecks == true ? Color(0xff6c63ff) : Colors.white70,
+        elevation: 0.01,
+      ),
     );
   }
 }

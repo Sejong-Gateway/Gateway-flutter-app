@@ -25,10 +25,17 @@ class CurrentCourseTab extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      '학기',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    Row(
+
+                      children: [
+                        this.courseView("3-2"),
+                        SizedBox(width: 10,),
+                        Text(
+                          '학기',
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     )
                   ],
                 ),
@@ -101,6 +108,20 @@ class CurrentCourseTab extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget courseView(String currentCourse) {
+    return Row(
+      children: [
+        Text(
+          currentCourse == "" ? "" : currentCourse,
+          style: TextStyle(
+              fontSize: 30,
+              color: Color(0xff6d69fb),
+              fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }
