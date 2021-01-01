@@ -7,7 +7,7 @@ class semesterModal {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(16),
       ),
       backgroundColor: Color(0xffe5e3ff),
       builder: (BuildContext context) {

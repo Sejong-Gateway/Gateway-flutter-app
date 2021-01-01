@@ -6,6 +6,9 @@ class MainpageHamburger {
   mainBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       builder: (BuildContext context) {
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 36),

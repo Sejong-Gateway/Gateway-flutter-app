@@ -8,7 +8,7 @@ class departmentModal {
         context: context,
         backgroundColor: Color(0xffe5e3ff),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(16),
         ),
         builder: (BuildContext context) {
           return Padding(
