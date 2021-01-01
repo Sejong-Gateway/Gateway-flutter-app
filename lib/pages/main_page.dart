@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/main_page_tabs/current_course_tab.dart';
 import 'package:login_page/main_page_tabs/current_tab.dart';
 import 'package:login_page/modals/mainpage_hamburger.dart';
@@ -6,13 +7,14 @@ import 'package:login_page/modals/signup_department.dart';
 
 class Mainpage extends StatefulWidget {
   Mainpage({Key key}) : super(key: key);
+
   @override
   _mainpage createState() => new _mainpage();
 }
 
-
 class _mainpage extends State<Mainpage> {
   MainpageHamburger hamburerModal = new MainpageHamburger();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,65 +27,74 @@ class _mainpage extends State<Mainpage> {
             backgroundColor: Colors.white,
             elevation: 0,
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(0),
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Row(
+                preferredSize: Size.fromHeight(0),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: ListView(
+                    shrinkWrap: true,
                     children: [
-                      Expanded(
-                        child: TabBar(
-                          labelColor: Colors.black,
-                          indicatorColor: Colors.black,
-                          indicator: UnderlineTabIndicator(
-                            borderSide: BorderSide(width: 3.0),
-                            insets: EdgeInsets.symmetric(horizontal: 62.0),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TabBar(
+                              labelColor: Colors.black,
+                              indicatorColor: Colors.black,
+                              indicator: UnderlineTabIndicator(
+                                borderSide: BorderSide(width: 3.0),
+                                insets: EdgeInsets.symmetric(horizontal: 62.0),
+                              ),
+                              tabs: [
+                                Tab(
+                                  child: Container(
+                                    child: Text(
+                                      "나의 현황",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Tab(
+                                  child: Container(
+                                    child: Text(
+                                      "수강중",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Tab(
+                                  child: Container(
+                                    child: Text(
+                                      "수강계획",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          tabs: [
-                            Tab(
+                          Container(
+                            width: 100,
+                            height: 44,
+                            child: RaisedButton(
+                              color: Colors.white,
+                              elevation: 0,
                               child: Container(
-                                child: Text(
-                                  "나의 현황",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
+                                margin: EdgeInsets.only(left: 30),
+                                child:
+                                    SvgPicture.asset('asset/hamburgerMenu.svg'),
                               ),
+                              onPressed: () {
+                                hamburerModal.mainBottomSheet(context);
+                              },
                             ),
-                            Tab(
-                              child: Container(
-                                child: Text(
-                                  "수강중",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            Tab(
-                              child: Container(
-                                child: Text(
-                                  "수강계획",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 100,
-                        height: 44,
-                        child:  RaisedButton(
-                          color: Colors.white,
-                          elevation: 0,
-                          child: Icon(Icons.menu),
-                          onPressed: (){
-                            hamburerModal.mainBottomSheet(context);
-                          },
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
+                )),
           ),
           // TabVarView 구현. 각 탭에 해당하는 컨텐트 구성
           body: Container(

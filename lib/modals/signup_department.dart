@@ -1,44 +1,54 @@
-
 import 'package:flutter/material.dart';
 
-class departmentModal{
+class departmentModal {
   String dropValue;
-  mainBottomSheet(BuildContext context){
+
+  mainBottomSheet(BuildContext context) {
     showModalBottomSheet(
         context: context,
-        builder: (BuildContext context){
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              _createTile(context, '기린', Icons.keyboard_arrow_right, _action1),
-              _createTile(context, '토끼', Icons.keyboard_arrow_right, _action2),
-              _createTile(context, '거북이', Icons.keyboard_arrow_right, _action3),
-            ],
+        backgroundColor: Color(0xffe5e3ff),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.only(top:14,left: 23),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                _createTile(context, '기린', _action1),
+                _createTile(context, '토끼', _action2),
+                _createTile(context, '거북이', _action3),
+                _createTile(context, '거북이', _action3),
+                _createTile(context, '거북이', _action3),
+              ],
+            ),
           );
-        }
-    );
+        });
   }
 
-  ListTile _createTile(BuildContext context, String name, IconData icon, Function action){
+  ListTile _createTile(BuildContext context, String name, Function action) {
     return ListTile(
-      leading: Icon(icon),
-      title: Text(name),
-      onTap: (){
+      title: Text(
+        name,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+      ),
+      onTap: () {
         Navigator.pop(context);
         action();
       },
     );
   }
 
-  _action1(){
-    dropValue="1";
+  _action1() {
+    dropValue = "1";
   }
 
-  _action2(){
-    dropValue="2";
+  _action2() {
+    dropValue = "2";
   }
 
-  _action3(){
-    dropValue="3";
+  _action3() {
+    dropValue = "3";
   }
 }

@@ -40,8 +40,7 @@ extension on LoginPage {
             Container(
               width: 81,
               height: 66,
-              child:
-                  SvgPicture.asset('asset/Group155.svg', color: GateWaycolor),
+              child: SvgPicture.asset('asset/Group155.svg'),
             ),
             Expanded(
               flex: 45,
@@ -59,20 +58,25 @@ extension on LoginPage {
             ),
             StayedLogin(),
             Expanded(
-              flex: 69,
+              flex: 71,
               child: Container(),
             ),
             ButtonTheme(
               height: 48,
               minWidth: 400,
               child: RaisedButton(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    side: BorderSide(color: GateWaycolor)),
                 onPressed: () {},
                 child: Text(
                   "로그인",
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xffffffff),
+                  ),
                 ),
                 color: GateWaycolor,
               ),
@@ -93,8 +97,6 @@ extension on LoginPage {
   }
 
   //입력 받을 때 사용 widget
-
-  //비밀번호 입력 받을 때 위젯, obscureText사용
   Widget _textField(String labelText, String hintText, bool activation) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,15 +105,18 @@ extension on LoginPage {
           labelText,
           style: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w500,
           ),
         ),
         TextField(
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-                color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
-            contentPadding: EdgeInsets.zero,
+                color: Color(0xffdbdbdb),
+                fontSize: 12,
+                fontWeight: FontWeight.w300),
+            contentPadding: EdgeInsets.only(top: 13),
           ),
           obscureText: activation,
         ),
@@ -125,17 +130,20 @@ extension on LoginPage {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("계정이 없으신가요? ",
+        Text("계정이 없으신가요?",
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w500,
               color: Colors.grey,
             )),
+        SizedBox(
+          width: 10,
+        ),
         InkWell(
           child: Text("회원가입",
               style: TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w500,
                   color: GateWaycolor)),
           onTap: () => {},
         ),
@@ -166,24 +174,30 @@ class _StayedLogin extends State<StayedLogin> {
               });
             },
             child: checkboxValue
-                ? Icon(
-                    Icons.check_circle,
-                    color: GateWaycolor,
-                    size: 22,
+                ? Container(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset(
+                      'asset/checkerNo.svg',
+                    ),
                   )
-                : Icon(
-                    Icons.check_circle,
-                    color: Colors.grey,
-                    size: 22,
+                : Container(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset(
+                      'asset/checker.svg',
+                    ),
                   ),
           ),
           SizedBox(width: 8),
-          Text("로그인 유지",
-              style: TextStyle(
-                fontSize: 14,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.bold,
-              )),
+          Text(
+            "로그인 유지",
+            style: TextStyle(
+              fontSize: 14,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

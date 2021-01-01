@@ -71,7 +71,7 @@ extension on ProfileTagPage {
             '태그 설정',
             style: TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(
@@ -81,7 +81,7 @@ extension on ProfileTagPage {
             '기본 태그',
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(
@@ -91,7 +91,7 @@ extension on ProfileTagPage {
             '이수 구분',
             style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
             ),
           ),
           SizedBox(
@@ -105,7 +105,7 @@ extension on ProfileTagPage {
             '학년 구분',
             style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
             ),
           ),
           SizedBox(
@@ -115,6 +115,7 @@ extension on ProfileTagPage {
           SizedBox(
             height: 25,
           ),
+          //+ 가 svg이미가 아님
           InkWell(
             child: Text(
               "+     태그추가",
@@ -144,7 +145,7 @@ extension on ProfileTagPage {
             '기타 문의',
             style: TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(
@@ -191,7 +192,7 @@ extension on ProfileTagPage {
       children: [
         Text(
           '개발자 이메일',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
         ),
         SizedBox(
           width: 18,
@@ -199,7 +200,7 @@ extension on ProfileTagPage {
         Text(
           email,
           style: TextStyle(
-              fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
+              fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xff989898),),
         ),
       ],
     );
@@ -216,7 +217,7 @@ extension on ProfileTagPage {
               '계정',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],
@@ -230,7 +231,7 @@ extension on ProfileTagPage {
               '학번',
               style: TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
                 color: Colors.black,
               ),
             ),
@@ -242,7 +243,7 @@ extension on ProfileTagPage {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey,
+                color: Color(0xff989898),
               ),
             ),
           ],
@@ -255,7 +256,7 @@ extension on ProfileTagPage {
             "회원 탈퇴",
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               color: Color(0xff6d69fb),
             ),
           ),
@@ -267,6 +268,7 @@ extension on ProfileTagPage {
 
   Widget _courseTag(String labelText) {
     return Container(
+      padding: EdgeInsets.only(bottom:1),
       width: 30,
       height: 18,
       decoration: BoxDecoration(
@@ -279,7 +281,7 @@ extension on ProfileTagPage {
       child: Center(
         child: Text(
           labelText,
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
         ),
       ),
     );
@@ -287,8 +289,9 @@ extension on ProfileTagPage {
 
   Widget _semesterTag(String labelText) {
     return Container(
+      padding: EdgeInsets.only(bottom:2),
       width: 30,
-      height: 18,
+      height: 20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
@@ -299,7 +302,7 @@ extension on ProfileTagPage {
       child: Center(
         child: Text(
           labelText,
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
         ),
       ),
     );

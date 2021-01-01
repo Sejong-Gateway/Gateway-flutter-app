@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/modals/signup_department.dart';
 import 'package:login_page/modals/signup_semester.dart';
 
@@ -97,15 +98,19 @@ class _Certificatechecker extends State<Certificatechecker> {
               });
             },
             child: checkboxValue
-                ? Icon(
-                    Icons.check_circle,
-                    color: Colors.deepPurpleAccent,
-                    size: 22,
+                ? Container(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset(
+                      'asset/checkerNo.svg',
+                    ),
                   )
-                : Icon(
-                    Icons.check_circle,
-                    color: Colors.grey[300],
-                    size: 22,
+                : Container(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset(
+                      'asset/checker.svg',
+                    ),
                   ),
           ),
           SizedBox(width: 8),
@@ -120,20 +125,26 @@ class _Certificatechecker extends State<Certificatechecker> {
           SizedBox(width: 38),
           GestureDetector(
             onTap: () {
-              setState(() {
-                checkboxValue = !checkboxValue;
-              });
+              setState(
+                () {
+                  checkboxValue = !checkboxValue;
+                },
+              );
             },
             child: !checkboxValue
-                ? Icon(
-                    Icons.check_circle,
-                    color: Colors.deepPurpleAccent,
-                    size: 22,
+                ? Container(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset(
+                      'asset/checkerNo.svg',
+                    ),
                   )
-                : Icon(
-                    Icons.check_circle,
-                    color: Colors.grey[300],
-                    size: 22,
+                : Container(
+                    width: 22,
+                    height: 22,
+                    child: SvgPicture.asset(
+                      'asset/checker.svg',
+                    ),
                   ),
           ),
           SizedBox(width: 8),
@@ -257,7 +268,7 @@ extension on SignupPage {
           labelText,
           style: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
         TextField(
@@ -265,7 +276,7 @@ extension on SignupPage {
             hintText: hintText,
             hintStyle: TextStyle(
                 color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
-            contentPadding: EdgeInsets.zero,
+            contentPadding: EdgeInsets.only(top: 13),
           ),
           obscureText: activation,
         )
@@ -293,7 +304,7 @@ extension on SignupPage {
               color: inputChecks == true ? Colors.white : Colors.grey),
         ),
         color: inputChecks == true ? Color(0xff6c63ff) : Colors.white70,
-        elevation: 0.01,
+        elevation: 0,
       ),
     );
   }

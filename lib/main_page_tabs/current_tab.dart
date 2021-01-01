@@ -73,7 +73,9 @@ class CurrentStatusTab extends StatelessWidget {
                   totalCredits: 9,
                   noLimit: true,
                 ),
-                SizedBox(height: 29,),
+                SizedBox(
+                  height: 29,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 0),
                   child: Container(
@@ -82,7 +84,9 @@ class CurrentStatusTab extends StatelessWidget {
                     color: Color(0xffefefef),
                   ),
                 ),
-                SizedBox(height: 29,),
+                SizedBox(
+                  height: 29,
+                ),
                 this._modify("공통졸업요건", "편집"),
                 SizedBox(
                   height: 18,
@@ -103,7 +107,9 @@ class CurrentStatusTab extends StatelessWidget {
                   height: 14,
                 ),
                 this._bookReq(),
-                SizedBox(height: 13,),
+                SizedBox(
+                  height: 13,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 0),
                   child: Container(
@@ -112,7 +118,9 @@ class CurrentStatusTab extends StatelessWidget {
                     color: Color(0xffefefef),
                   ),
                 ),
-                SizedBox(height: 14,),
+                SizedBox(
+                  height: 14,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -136,9 +144,9 @@ class CurrentStatusTab extends StatelessWidget {
                               decoration: BoxDecoration(
                                 border: Border(
                                   right: BorderSide(
-                                      color: Color(0xffbebbfd), width: 2),
+                                      color: Color(0xffbebbfd), width: 1),
                                   bottom: BorderSide(
-                                      color: Color(0xffbebbfd), width: 2),
+                                      color: Color(0xffbebbfd), width: 1),
                                 ),
                               ),
                               child: Center(
@@ -154,10 +162,8 @@ class CurrentStatusTab extends StatelessWidget {
                               height: 33,
                               decoration: BoxDecoration(
                                 border: Border(
-                                  right: BorderSide(
-                                      color: Color(0xffbebbfd), width: 2),
                                   bottom: BorderSide(
-                                      color: Color(0xffbebbfd), width: 2),
+                                      color: Color(0xffbebbfd), width: 1),
                                 ),
                               ),
                               child: Center(
@@ -174,7 +180,7 @@ class CurrentStatusTab extends StatelessWidget {
                 ),
                 Container(
                   child: engScoreActive
-                      ? this._tableScoreInput("TOEIC")
+                      ? this._tableScoreInput("TOEIC",true)
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -221,7 +227,7 @@ class CurrentStatusTab extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(244, 62, 0, 0),
+                padding: EdgeInsets.fromLTRB(244, 69, 0, 0),
                 child: Text(
                   currentCredit.toString(),
                   style: TextStyle(
@@ -287,15 +293,18 @@ class CurrentStatusTab extends StatelessWidget {
         Text(labelText1,
             style: TextStyle(
               fontSize: 12,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.bold,
               color: Colors.black,
             )),
         InkWell(
-          child: Text(inselText,
-              style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: GatewayColor)),
+          child: Text(
+            inselText,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff6d69fb),
+            ),
+          ),
           onTap: () => {},
         )
       ],
@@ -321,8 +330,8 @@ class CurrentStatusTab extends StatelessWidget {
               height: 33,
               decoration: BoxDecoration(
                 border: Border(
-                  right: BorderSide(color: Color(0xffbebbfd), width: 2),
-                  bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+                  right: BorderSide(color: Color(0xffbebbfd), width: 1),
+                  bottom: BorderSide(color: Color(0xffbebbfd), width: 1),
                 ),
               ),
               child: Row(
@@ -343,8 +352,8 @@ class CurrentStatusTab extends StatelessWidget {
               height: 33,
               decoration: BoxDecoration(
                 border: Border(
-                  right: BorderSide(color: Color(0xffbebbfd), width: 2),
-                  bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+                  right: BorderSide(color: Color(0xffbebbfd), width: 1),
+                  bottom: BorderSide(color: Color(0xffbebbfd), width: 1),
                 ),
               ),
               child: Row(
@@ -365,8 +374,7 @@ class CurrentStatusTab extends StatelessWidget {
               height: 33,
               decoration: BoxDecoration(
                 border: Border(
-                  right: BorderSide(color: Color(0xffbebbfd), width: 2),
-                  bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+                  bottom: BorderSide(color: Color(0xffbebbfd), width: 1),
                 ),
               ),
               child: Row(
@@ -384,15 +392,16 @@ class CurrentStatusTab extends StatelessWidget {
             )
           ],
         ),
-        this._booktableInput('서양의 역사와 사상', 4, 4),
-        this._booktableInput('동양의 역사와 사상', 4, 0),
-        this._booktableInput('동서양의 문학', 4, 0),
-        this._booktableInput('과학사상', 4, 4),
+        this._booktableInput('서양의 역사와 사상', 4, 4,false),
+        this._booktableInput('동양의 역사와 사상', 4, 0,false),
+        this._booktableInput('동서양의 문학', 4, 0,false),
+        this._booktableInput('과학사상', 4, 4,false),
+        this._booktableInput('합계', 13, 4,true),
       ],
     );
   }
 
-  Widget _tableScoreInput(String courseLabel) {
+  Widget _tableScoreInput(String courseLabel,bool Endline) {
     return Row(
       children: [
         Container(
@@ -400,8 +409,8 @@ class CurrentStatusTab extends StatelessWidget {
           height: 33,
           decoration: BoxDecoration(
             border: Border(
-              right: BorderSide(color: Color(0xffbebbfd), width: 2),
-              bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+              right: BorderSide(color: Color(0xffbebbfd), width: 1),
+              bottom: Endline == true ? BorderSide(color: Color(0xffffffff), width: 0) : BorderSide(color: Color(0xffbebbfd), width: 1),
             ),
           ),
           child: Container(
@@ -417,8 +426,8 @@ class CurrentStatusTab extends StatelessWidget {
           height: 33,
           decoration: BoxDecoration(
             border: Border(
-              right: BorderSide(color: Color(0xffbebbfd), width: 2),
-              bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+              right: Endline == true ? BorderSide(color: Color(0xffffffff), width: 0) : BorderSide(color: Color(0xffbebbfd), width: 1),
+              bottom: Endline == true ? BorderSide(color: Color(0xffffffff), width: 0) : BorderSide(color: Color(0xffbebbfd), width: 1),
             ),
             color: Color(0xffe5e3ff),
           ),
@@ -440,7 +449,7 @@ class CurrentStatusTab extends StatelessWidget {
     );
   }
 
-  Widget _booktableInput(String courseLabel, int totalBook, int currentBook) {
+  Widget _booktableInput(String courseLabel, int totalBook, int currentBook,bool Endline) {
     return Row(
       children: [
         Container(
@@ -448,8 +457,8 @@ class CurrentStatusTab extends StatelessWidget {
           height: 33,
           decoration: BoxDecoration(
             border: Border(
-              right: BorderSide(color: Color(0xffbebbfd), width: 2),
-              bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+              right: BorderSide(color: Color(0xffbebbfd), width: 1),
+              bottom: Endline == true ? BorderSide(color: Color(0xffffffff), width: 0) : BorderSide(color: Color(0xffbebbfd), width: 1),
             ),
           ),
           child: Row(
@@ -459,7 +468,7 @@ class CurrentStatusTab extends StatelessWidget {
                 courseLabel,
                 style: TextStyle(
                     fontSize: 9,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black),
               ),
             ],
@@ -470,8 +479,8 @@ class CurrentStatusTab extends StatelessWidget {
           height: 33,
           decoration: BoxDecoration(
             border: Border(
-              right: BorderSide(color: Color(0xffbebbfd), width: 2),
-              bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+              right: BorderSide(color: Color(0xffbebbfd), width: 1),
+              bottom: Endline == true ? BorderSide(color: Color(0xffffffff), width: 0) : BorderSide(color: Color(0xffbebbfd), width: 1),
             ),
             color: Colors.white,
           ),
@@ -483,7 +492,7 @@ class CurrentStatusTab extends StatelessWidget {
                   totalBook.toString(),
                   style: TextStyle(
                       fontSize: 9,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: totalBook == 0 ? Colors.red : Colors.black),
                 ),
               ),
@@ -491,7 +500,7 @@ class CurrentStatusTab extends StatelessWidget {
                 '권',
                 style: TextStyle(
                     fontSize: 9,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black),
               )
             ],
@@ -502,8 +511,8 @@ class CurrentStatusTab extends StatelessWidget {
           height: 33,
           decoration: BoxDecoration(
             border: Border(
-              right: BorderSide(color: Color(0xffbebbfd), width: 2),
-              bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+              //right: BorderSide(color: Color(0xffbebbfd), width: 1),
+              bottom: Endline == true ? BorderSide(color: Color(0xffffffff), width: 0) : BorderSide(color: Color(0xffbebbfd), width: 1),
             ),
             color: Color(0xffe5e3ff),
           ),
@@ -515,7 +524,7 @@ class CurrentStatusTab extends StatelessWidget {
                   currentBook.toString(),
                   style: TextStyle(
                       fontSize: 9,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: currentBook == 0 ? Colors.red : Colors.black),
                 ),
               ),
@@ -523,8 +532,8 @@ class CurrentStatusTab extends StatelessWidget {
                 '권',
                 style: TextStyle(
                     fontSize: 9,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                    fontWeight: FontWeight.w500,
+                    color: currentBook == 0 ? Colors.red : Colors.black),
               )
             ],
           ),
@@ -539,7 +548,7 @@ class CurrentStatusTab extends StatelessWidget {
       children: [
         Text(
           '세종사회봉사1',
-          style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
         ),
         SizedBox(
           height: 9,
@@ -550,7 +559,7 @@ class CurrentStatusTab extends StatelessWidget {
               '봉사시간',
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
                 color: Color(0xff888888),
               ),
             ),
@@ -561,7 +570,7 @@ class CurrentStatusTab extends StatelessWidget {
               currentVolunteerTime.toString(),
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
                 color: Color(0xff888888),
               ),
             ),
@@ -569,7 +578,7 @@ class CurrentStatusTab extends StatelessWidget {
               '시간',
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
                 color: Color(0xff888888),
               ),
             ),
@@ -621,7 +630,7 @@ class ProgressBar extends StatelessWidget {
               progressColor: GatewayColor,
             ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
@@ -635,19 +644,19 @@ class ProgressBar extends StatelessWidget {
                   noLimit == true ? "" : "/",
                   style: TextStyle(
                       fontSize: 10,
-                      color: GatewayColor,
+                      color:  Color(0xff989898),
                       fontWeight: FontWeight.w500),
                 ),
                 Text(
                   noLimit == false ? totalCredits.toString() : "",
                   style: TextStyle(
                       fontSize: 10,
-                      color: GatewayColor,
+                      color: Color(0xff989898),
                       fontWeight: FontWeight.w500),
                 ),
                 Text(
                   noLimit == true ? "학점" : "과목",
-                  style: TextStyle(fontSize: 10, color: GatewayColor),
+                  style: TextStyle(fontSize: 10, color: Color(0xff989898)),
                 ),
               ],
             )
