@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/models/Course_model.dart';
 
 const GatewayColor = Color(0xff6d69fb);
@@ -17,32 +18,25 @@ class ProfileTagPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      appBar: this._appBar,
+      appBar:AppBar(
+        centerTitle: true,
+        title: Text(
+          '내정보',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        leading: IconButton(icon: SvgPicture.asset('asset/Backwardarrow.svg'), color: Color(0xff6d69fb),
+          onPressed: () {Navigator.pop(context);},
+        ),
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: this._body(context),
     );
   }
 }
 
 extension on ProfileTagPage {
-  Widget get _appBar => AppBar(
-        centerTitle: true,
-        title: Text(
-          '내정보',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: GatewayColor,
-          ),
-          iconSize: 33,
-          onPressed: () {},
-        ),
-        toolbarHeight: 44,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      );
-
   Widget _body(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 36),

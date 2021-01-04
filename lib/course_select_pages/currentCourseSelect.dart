@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/models/Course_model.dart';
 
 class currentCourseSelect extends StatelessWidget {
@@ -15,40 +16,81 @@ class currentCourseSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 36),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 26,
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(icon: SvgPicture.asset('asset/Backwardarrow.svg'), color: Color(0xff6d69fb),
+          onPressed: () {Navigator.pop(context);},
+        ),
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: Container(
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 36),
+        child: ListView(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 70,
+                ),
+                Text(
+                  "이수한 과목을 선택해주세요",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 47,
+            ),
+            Row(
+              children: [
+                Text(
+                  "교양필수",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 17,
+            ),
+            this._listSpread(),
+            SizedBox(
+              height: 206,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  width: 154,
+                  height: 37,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(
+                        color: Color(0xff6c63ff),
+                      ),
+                    ),
+                    onPressed: () {},
+                    color: Color(0xff6c63ff),
+                    textColor: Colors.white,
+                    child: Text(
+                      "다음".toUpperCase(),
+                      style: TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                  Text(
-                    "이수한 과목을 선택해주세요",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 47,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "교양필수",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 17,
-              ),
-              this._listSpread()
-            ],
-          )),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 45,
+            ),
+          ],
+        ),
+      ),
     );
   }
 

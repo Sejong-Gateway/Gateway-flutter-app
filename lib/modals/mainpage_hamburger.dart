@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/pages/profiletag_page.dart';
 
 class MainpageHamburger {
   String dropValue;
@@ -32,14 +33,19 @@ class MainpageHamburger {
       trailing: Icon(icon),
       title: Text(name,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
       onTap: () {
-        Navigator.pop(context);
         action();
       },
     );
   }
 
-  _action1() {
+  _action1(context){
     dropValue = "1";
+    /*Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileTagPage(),
+      ),
+    );*/ //=> 안됨
   }
 
   _action2() {

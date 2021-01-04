@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/course_select_pages/currentCourseSelect.dart';
 import 'package:login_page/modals/signup_department.dart';
 import 'package:login_page/modals/signup_semester.dart';
+import 'package:login_page/pages/courseselect_page.dart';
+import 'package:login_page/pages/main_page.dart';
 
 class SignupPage extends StatelessWidget {
   //static Color purpleCustom = HexColor.fromHex('#6c63ff');
@@ -12,7 +15,18 @@ class SignupPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: this._appBar,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: SvgPicture.asset('asset/Backwardarrow.svg'),
+          color: Color(0xff6d69fb),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: this._body(context),
     );
   }
@@ -164,12 +178,6 @@ class _Certificatechecker extends State<Certificatechecker> {
 
 //SignupPage 확장
 extension on SignupPage {
-  Widget get _appBar => AppBar(
-        toolbarHeight: 44,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      );
-
   Widget _body(BuildContext context) {
     return SafeArea(
       child: Container(
@@ -248,7 +256,7 @@ extension on SignupPage {
               flex: 60,
               child: Container(),
             ),
-            this._verifyButton(true),
+            this._verifyButton(true,context),
             Expanded(
               flex: 99,
               child: Container(),
@@ -284,7 +292,7 @@ extension on SignupPage {
     );
   }
 
-  Widget _verifyButton(bool inputChecks) {
+  Widget _verifyButton(bool inputChecks, BuildContext context) {
     return ButtonTheme(
       height: 48,
       minWidth: 400,
@@ -295,7 +303,14 @@ extension on SignupPage {
             color: Color(0xff6c63ff),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CourseSelect(),
+            ),
+          );
+        },
         child: Text(
           "회원가입",
           style: TextStyle(

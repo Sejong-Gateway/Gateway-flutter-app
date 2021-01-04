@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/course_select_pages/futureCourseSelect.dart';
 import 'package:login_page/main_page_tabs/current_course_tab.dart';
 import 'package:login_page/main_page_tabs/current_tab.dart';
+import 'package:login_page/main_page_tabs/future_course_tab.dart';
 import 'package:login_page/modals/mainpage_hamburger.dart';
 import 'package:login_page/modals/signup_department.dart';
 
@@ -18,7 +20,6 @@ class _mainpage extends State<Mainpage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'NotoSans'),
       home: DefaultTabController(
         // 탭의 수 설정
         length: 3,
@@ -34,6 +35,7 @@ class _mainpage extends State<Mainpage> {
                     shrinkWrap: true,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child: TabBar(
@@ -103,7 +105,7 @@ class _mainpage extends State<Mainpage> {
               children: [
                 CurrentStatusTab(),
                 CurrentCourseTab(),
-                CurrentCourseTab(),
+                futureCoursetab(),
               ],
             ),
           ),

@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/course_select_pages/currentCourseSelect.dart';
+import 'package:login_page/pages/main_page.dart';
+import 'package:login_page/pages/signup_page.dart';
 
 //Gateway 색 적용
 const GateWaycolor = Color(0xff6c63ff);
 
 //LoginPage를 위한 statelesswidget
 class LoginPage extends StatelessWidget {
-  //static Color purpleCustom = HexColor.fromHex('#6c63ff');
-  //purple custom not working
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +70,10 @@ extension on LoginPage {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4),
                     side: BorderSide(color: GateWaycolor)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mainpage()));
+                },
                 child: Text(
                   "로그인",
                   style: TextStyle(
@@ -85,7 +89,7 @@ extension on LoginPage {
               flex: 33,
               child: Container(),
             ),
-            this._signup(),
+            this._signup(context),
             Expanded(
               flex: 170,
               child: Container(),
@@ -105,7 +109,6 @@ extension on LoginPage {
           labelText,
           style: TextStyle(
             fontSize: 16,
-            fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -125,7 +128,7 @@ extension on LoginPage {
   }
 
   //회원 가입 페이지 위한 버튼
-  Widget _signup() {
+  Widget _signup(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +148,14 @@ extension on LoginPage {
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: GateWaycolor)),
-          onTap: () => {},
+          onTap: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SignupPage(),
+              ),
+            ),
+          },
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:login_page/course_select_pages/currentCourseSelect.dart';
+import 'package:login_page/course_select_pages/futureCourseSelect.dart';
 
 class CourseSelect extends StatefulWidget {
   @override
@@ -12,19 +13,14 @@ class _CourseSelectState extends State<CourseSelect> {
 
   final List<Widget> _pages = <Widget>[
     Container(child: currentCourseSelect()),
-    Container(child: currentCourseSelect()),
-    Container(child: currentCourseSelect()),
+    Container(child: futureCourseSelect()),
+    Container(child: futureCourseSelect()),
   ];
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 44,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
       body: Container(
         child: Column(
           children: <Widget>[
