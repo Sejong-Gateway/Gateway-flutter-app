@@ -1,14 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/core/base_screen.dart';
+import 'package:login_page/viewmodel/splash_viewmodel.dart';
 
 class SplashPage extends StatelessWidget {
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => SplashPage(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      body: this._body(context),
+    return BaseScreen<SplashViewModel>(
+      onModelReady: (model) {
+        model.initState(context);
+      },
+      builder: (context, model, child) {
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          body: this._body(context),
+        );
+      },
     );
   }
 }

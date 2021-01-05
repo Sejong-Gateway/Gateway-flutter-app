@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/course_select_pages/currentCourseSelect.dart';
+import 'package:login_page/pages/course/currentCourseSelect.dart';
 import 'package:login_page/pages/main_page.dart';
 import 'package:login_page/pages/signup_page.dart';
 
@@ -39,10 +39,11 @@ extension on LoginPage {
           children: [
             SizedBox(height: 67),
             Container(
-                width: 81,
-                height: 66,
-                child: SvgPicture.asset('asset/Group155.svg',
-                    color: GateWaycolor)),
+              width: 81,
+              height: 66,
+              child:
+                  SvgPicture.asset('asset/Group155.svg', color: GateWaycolor),
+            ),
             Expanded(
               flex: 45,
               child: Container(),
@@ -68,11 +69,11 @@ extension on LoginPage {
               child: RaisedButton(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    side: BorderSide(color: GateWaycolor)),
+                  borderRadius: BorderRadius.circular(4),
+                  side: BorderSide(color: GateWaycolor),
+                ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Mainpage()));
+                  Navigator.of(context).push(MainPage.route());
                 },
                 child: Text(
                   "로그인",
@@ -114,16 +115,10 @@ extension on LoginPage {
             fontWeight: FontWeight.w500,
           ),
         ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyle(
-                color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
-            contentPadding: EdgeInsets.zero,
-          ),
-          obscureText: activation,
+        InputForm(
+          hintText: hintText,
+          activation: activation,
         ),
-        InputForm(hintText: hintText,activation: activation,),
       ],
     );
   }
@@ -149,9 +144,6 @@ extension on LoginPage {
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: GateWaycolor)),
-          onTap: () => {},
-                  fontWeight: FontWeight.w500,
-                  color: GateWaycolor)),
           onTap: () => {
             Navigator.push(
               context,
@@ -168,24 +160,30 @@ extension on LoginPage {
 
 //textfield input검사를 위한 InputForm
 //그런데 sufficon이 input에 따라 변화하는게 잘 안됨.. global key를 사용해야 할수도?
-class InputForm extends StatefulWidget{
+class InputForm extends StatefulWidget {
   String hintText;
   bool activation;
-  InputForm({Key key,@required this.hintText,this.activation}) : super(key:key);
+
+  InputForm({Key key, @required this.hintText, this.activation})
+      : super(key: key);
+
   @override
-  InputFormState createSt
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
     return InputFormState();
   }
 }
 
-class InputFormState extends State<InputForm>{
-  TextEditingController controller= new TextEditingController();
+class InputFormState extends State<InputForm> {
+  TextEditingController controller = new TextEditingController();
+
   @override
-  void initState(){
+  void initState() {
     controller = TextEditingController();
     super.initState();
   }
-  Widget build(BuildContext){
+
+  Widget build(BuildContext) {
     return TextFormField(
       decoration: InputDecoration(
         hintText: widget.hintText,
@@ -193,12 +191,14 @@ class InputFormState extends State<InputForm>{
           maxHeight: 8,
           minWidth: 12,
         ),
-        suffixIcon: controller?.text==null ? null:Container(
-          transform: Matrix4.translationValues(0, 10, 0.0),
-          child: SvgPicture.asset(
-            'asset/Checkbox.svg',
-          ),
-        ),
+        suffixIcon: controller?.text == null
+            ? null
+            : Container(
+                transform: Matrix4.translationValues(0, 10, 0.0),
+                child: SvgPicture.asset(
+                  'asset/Checkbox.svg',
+                ),
+              ),
         hintStyle: TextStyle(
             color: Color(0xffdbdbdb),
             fontSize: 12,
@@ -244,13 +244,14 @@ class _StayedLogin extends State<StayedLogin> {
                   ),
           ),
           SizedBox(width: 8),
-          Text("로그인 유지",
-              style: TextStyle(
-                fontSize: 14,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.bold,
-              )),
-
+          Text(
+            "로그인 유지",
+            style: TextStyle(
+              fontSize: 14,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );
