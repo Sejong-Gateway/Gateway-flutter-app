@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/course_select_pages/currentCourseSelect.dart';
+import 'package:login_page/pages/main_page.dart';
+import 'package:login_page/pages/signup_page.dart';
 
 //Gateway 색 적용
 const GateWaycolor = Color(0xff6c63ff);
 
 //LoginPage를 위한 statelesswidget
 class LoginPage extends StatelessWidget {
-  //static Color purpleCustom = HexColor.fromHex('#6c63ff');
-  //purple custom not working
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,20 +59,28 @@ extension on LoginPage {
             ),
             StayedLogin(),
             Expanded(
-              flex: 69,
+              flex: 71,
               child: Container(),
             ),
             ButtonTheme(
               height: 48,
               minWidth: 400,
               child: RaisedButton(
-                onPressed: () {},
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    side: BorderSide(color: GateWaycolor)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mainpage()));
+                },
                 child: Text(
                   "로그인",
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.white),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xffffffff),
+                  ),
                 ),
                 color: GateWaycolor,
               ),
@@ -80,7 +89,7 @@ extension on LoginPage {
               flex: 33,
               child: Container(),
             ),
-            this._signup(),
+            this._signup(context),
             Expanded(
               flex: 170,
               child: Container(),
@@ -102,7 +111,7 @@ extension on LoginPage {
           labelText,
           style: TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
         TextField(
@@ -114,22 +123,26 @@ extension on LoginPage {
           ),
           obscureText: activation,
         ),
+        InputForm(hintText: hintText,activation: activation,),
       ],
     );
   }
 
   //회원 가입 페이지 위한 버튼
-  Widget _signup() {
+  Widget _signup(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("계정이 없으신가요? ",
+        Text("계정이 없으신가요?",
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w500,
               color: Colors.grey,
             )),
+        SizedBox(
+          width: 10,
+        ),
         InkWell(
           child: Text("회원가입",
               style: TextStyle(
@@ -137,8 +150,62 @@ extension on LoginPage {
                   fontWeight: FontWeight.w700,
                   color: GateWaycolor)),
           onTap: () => {},
+                  fontWeight: FontWeight.w500,
+                  color: GateWaycolor)),
+          onTap: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SignupPage(),
+              ),
+            ),
+          },
         ),
       ],
+    );
+  }
+}
+
+//textfield input검사를 위한 InputForm
+//그런데 sufficon이 input에 따라 변화하는게 잘 안됨.. global key를 사용해야 할수도?
+class InputForm extends StatefulWidget{
+  String hintText;
+  bool activation;
+  InputForm({Key key,@required this.hintText,this.activation}) : super(key:key);
+  @override
+  InputFormState createSt
+    return InputFormState();
+  }
+}
+
+class InputFormState extends State<InputForm>{
+  TextEditingController controller= new TextEditingController();
+  @override
+  void initState(){
+    controller = TextEditingController();
+    super.initState();
+  }
+  Widget build(BuildContext){
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        suffixIconConstraints: BoxConstraints(
+          maxHeight: 8,
+          minWidth: 12,
+        ),
+        suffixIcon: controller?.text==null ? null:Container(
+          transform: Matrix4.translationValues(0, 10, 0.0),
+          child: SvgPicture.asset(
+            'asset/Checkbox.svg',
+          ),
+        ),
+        hintStyle: TextStyle(
+            color: Color(0xffdbdbdb),
+            fontSize: 12,
+            fontWeight: FontWeight.w300),
+        contentPadding: EdgeInsets.only(top: 10),
+      ),
+      obscureText: widget.activation,
     );
   }
 }
@@ -183,6 +250,7 @@ class _StayedLogin extends State<StayedLogin> {
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.bold,
               )),
+
         ],
       ),
     );
