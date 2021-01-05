@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/course_select_pages/futureCourseSelect.dart';
 import 'package:login_page/main_page_tabs/current_course_tab.dart';
+import 'package:login_page/main_page_tabs/current_course_tabTrue.dart';
 import 'package:login_page/main_page_tabs/current_tab.dart';
 import 'package:login_page/main_page_tabs/future_course_tab.dart';
 import 'package:login_page/modals/mainpage_hamburger.dart';
@@ -43,11 +44,12 @@ class _mainpage extends State<Mainpage> {
                               indicatorColor: Colors.black,
                               indicator: UnderlineTabIndicator(
                                 borderSide: BorderSide(width: 3.0),
-                                insets: EdgeInsets.symmetric(horizontal: 62.0),
+                                insets: EdgeInsets.symmetric(horizontal: 60.0),
                               ),
                               tabs: [
                                 Tab(
                                   child: Container(
+                                    padding: EdgeInsets.only(left: 5),
                                     child: Text(
                                       "나의 현황",
                                       style: TextStyle(
@@ -76,21 +78,21 @@ class _mainpage extends State<Mainpage> {
                               ],
                             ),
                           ),
-                          Container(
-                            width: 100,
-                            height: 44,
-                            child: RaisedButton(
-                              color: Colors.white,
-                              elevation: 0,
-                              child: Container(
-                                margin: EdgeInsets.only(left: 30),
-                                child:
-                                    SvgPicture.asset('asset/hamburgerMenu.svg'),
+                          Row(
+                            children: [
+                              RaisedButton(
+                                color: Colors.white,
+                                elevation: 0,
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 30),
+                                  child:
+                                  SvgPicture.asset('asset/hamburgerMenu.svg'),
+                                ),
+                                onPressed: () {
+                                  hamburerModal.mainBottomSheet(context);
+                                },
                               ),
-                              onPressed: () {
-                                hamburerModal.mainBottomSheet(context);
-                              },
-                            ),
+                            ],
                           ),
                         ],
                       ),
@@ -104,7 +106,7 @@ class _mainpage extends State<Mainpage> {
             child: TabBarView(
               children: [
                 CurrentStatusTab(),
-                CurrentCourseTab(),
+                CurrentCourseTabTrue(), //과목이 정상적으로 들어왔으면 CurrentCourseTabTrue()
                 futureCoursetab(),
               ],
             ),

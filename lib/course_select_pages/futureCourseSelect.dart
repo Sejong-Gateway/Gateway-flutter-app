@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/models/Course_model.dart';
+import 'package:login_page/pages/certificate_req_page.dart';
 import 'package:login_page/pages/main_page.dart';
 
 class futureCourseSelect extends StatelessWidget {
+  bool mainCallCheck;
+
+  futureCourseSelect({Key key, @required this.mainCallCheck}) : super(key: key);
   List<CourseModel> courseList = [
     CourseModel.dummy(),
     CourseModel.dummy(),
@@ -19,8 +23,12 @@ class futureCourseSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: SvgPicture.asset('asset/Backwardarrow.svg'), color: Color(0xff6d69fb),
-          onPressed: () {Navigator.pop(context);},
+        leading: IconButton(
+          icon: SvgPicture.asset('asset/Backwardarrow.svg'),
+          color: Color(0xff6d69fb),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         toolbarHeight: 44,
         backgroundColor: Colors.white,
@@ -75,14 +83,28 @@ class futureCourseSelect extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(context,MaterialPageRoute(builder:(context)=>Mainpage()));
+                      /*this.mainCallCheck == false
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CertificateReqInput(),
+                              ),
+                            )
+                          : Navigator.pop(context);*/
+                      //main에서 작동을 하게 하는 navigator 작동 안됨
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CertificateReqInput(),
+                        ),
+                      );
                     },
                     color: Color(0xff6c63ff),
                     textColor: Colors.white,
                     child: Text(
                       "다음".toUpperCase(),
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -107,7 +129,7 @@ class futureCourseSelect extends StatelessWidget {
         childAspectRatio: 2.65,
         children: [
           ...courseList.map(
-                (CourseModel subject) {
+            (CourseModel subject) {
               return Center(
                 child: _currentCourse(
                   labelText: subject.name,
@@ -145,7 +167,7 @@ class _currentCourseState extends State<_currentCourse> {
             widget.labelText,
             style: TextStyle(
               color:
-              _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
+                  _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
             ),
           ),
         ),
@@ -161,7 +183,7 @@ class _currentCourseState extends State<_currentCourse> {
       selectedColor: Color(0xff6c63ff),
       onSelected: (bool selected) {
         setState(
-              () {
+          () {
             _isSelected = !_isSelected;
           },
         );

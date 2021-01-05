@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/models/Course_model.dart';
 
-class futureCoursetab extends StatelessWidget {
+class CurrentCourseTabTrue extends StatelessWidget {
   List<CourseModel> courseList = [
     CourseModel.dummy(),
     CourseModel.dummy(),
@@ -25,68 +25,31 @@ class futureCoursetab extends StatelessWidget {
               height: 12,
             ),
             Row(
-              children: [
-                Container(
-                  width: 84,
-                  height: 25,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(13.0),
-                      side: BorderSide(
-                        color: Color(0xff6d69fb),
-                      ),
-                    ),
-                    onPressed: () {},
-                    color: Color(0xffffffff),
-                    textColor: Color(0xff6d69fb),
-                    child: Text(
-                      "전공".toUpperCase(),
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 11,
-                ),
-                Container(
-                  width: 84,
-                  height: 25,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(13.0),
-                      side: BorderSide(
-                        color: Color(0xff6d69fb),
-                      ),
-                    ),
-                    onPressed: () {},
-                    color: Color(0xffffffff),
-                    textColor: Color(0xff6d69fb),
-                    child: Text(
-                      "교양".toUpperCase(),
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 23,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '앞으로 들어야할 과목',
+                  '현재 나의 학기는?',
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
+                Row(
+                  children: [
+                    this.courseView("3-2"),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '학기',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )
               ],
             ),
             SizedBox(
               height: 20,
             ),
-            this._modify("전공","편집"),
+            this._modify("전공", "편집"),
             SizedBox(
               height: 9,
             ),
@@ -123,7 +86,6 @@ class futureCoursetab extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
                                     height: 12,
@@ -195,6 +157,37 @@ class futureCoursetab extends StatelessWidget {
                 );
               },
             ).toList(),
+            SizedBox(
+              height: 49,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 154,
+                  height: 37,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(
+                        color: Color(0xff6c63ff),
+                      ),
+                    ),
+                    onPressed: () {},
+                    color: Color(0xffffffff),
+                    textColor: Color(0xff6c63ff),
+                    child: Text(
+                      "기이수로 넘기기".toUpperCase(),
+                      style: TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 54,
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -256,6 +249,7 @@ class futureCoursetab extends StatelessWidget {
       ],
     );
   }
+
   Widget _modify(String labelText1, String inselText) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

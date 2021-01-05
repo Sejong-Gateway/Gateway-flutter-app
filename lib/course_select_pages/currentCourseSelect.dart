@@ -3,7 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/models/Course_model.dart';
 
+//117번째 줄 PageController.page cannot be accessed before a PageView is built with it. 오류 발생
+//future widget으로 만들라는데.. 그래도 되는건가??
 class currentCourseSelect extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CurrentCourseSelect();
+  }
+}
+
+class CurrentCourseSelect extends StatefulWidget {
+  @override
+  CurrentCourseSelectState createState() => CurrentCourseSelectState();
+}
+
+class CurrentCourseSelectState extends State<CurrentCourseSelect> {
+  final _controller = new PageController();
+  static const _kDuration = const Duration(milliseconds: 300);
+  static const _kCurve = Curves.ease;
   List<CourseModel> courseList = [
     CourseModel.dummy(),
     CourseModel.dummy(),
@@ -18,8 +35,12 @@ class currentCourseSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: SvgPicture.asset('asset/Backwardarrow.svg'), color: Color(0xff6d69fb),
-          onPressed: () {Navigator.pop(context);},
+        leading: IconButton(
+          icon: SvgPicture.asset('asset/Backwardarrow.svg'),
+          color: Color(0xff6d69fb),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         toolbarHeight: 44,
         backgroundColor: Colors.white,
@@ -27,7 +48,8 @@ class currentCourseSelect extends StatelessWidget {
       ),
       body: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 36),
+
+        padding: EdgeInsets.symmetric(horizontal: 31),
         child: ListView(
           children: [
             Row(
@@ -54,9 +76,10 @@ class currentCourseSelect extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 17,
+              height: 12,
             ),
             this._listSpread(),
+            Container(),
             SizedBox(
               height: 206,
             ),
@@ -73,13 +96,16 @@ class currentCourseSelect extends StatelessWidget {
                         color: Color(0xff6c63ff),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      _controller.nextPage(
+                          duration: _kDuration, curve: _kCurve);
+                    },
                     color: Color(0xff6c63ff),
                     textColor: Colors.white,
                     child: Text(
                       "다음".toUpperCase(),
-                      style: TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -98,15 +124,15 @@ class currentCourseSelect extends StatelessWidget {
     return Container(
       child: GridView.count(
         shrinkWrap: true,
-        crossAxisSpacing: 11,
-        mainAxisSpacing: 9,
+        crossAxisSpacing: 7,
+        mainAxisSpacing: 7,
         crossAxisCount: 2,
         childAspectRatio: 2.65,
         children: [
           ...courseList.map(
             (CourseModel subject) {
               return Center(
-                child: _currentCourse(
+                child: _currentCourseBox(
                   labelText: subject.name,
                 ),
               );
@@ -118,51 +144,74 @@ class currentCourseSelect extends StatelessWidget {
   }
 }
 
-class _currentCourse extends StatefulWidget {
+class _currentCourseBox extends StatefulWidget {
   String labelText;
   bool selected;
 
-  _currentCourse({Key key, @required this.labelText}) : super(key: key);
+  _currentCourseBox({Key key, @required this.labelText}) : super(key: key);
 
   @override
   _currentCourseState createState() => _currentCourseState();
 }
 
-class _currentCourseState extends State<_currentCourse> {
+class _currentCourseState extends State<_currentCourseBox> {
   bool _isSelected = false;
 
   Widget build(BuildContext context) {
-    return ChoiceChip(
-      elevation: 5,
-      label: Container(
-        width: 146,
-        height: 55,
-        child: Center(
-          child: Text(
-            widget.labelText,
-            style: TextStyle(
-              color:
-                  _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
+    return Container(
+      margin: EdgeInsets.only(left: 2.5,right: 2.5,top:2.5,bottom: 3),
+      child: ChoiceChip(
+        elevation: 4,
+        label: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Text(
+              widget.labelText,
+              style: TextStyle(
+                color:
+                    _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
+              ),
             ),
           ),
         ),
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(4.0),
+        visualDensity: VisualDensity.standard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.0),
+          ),
         ),
+        selected: _isSelected,
+        labelStyle: TextStyle(color: Colors.white),
+        backgroundColor: Color(0xffffffff),
+        selectedColor: Color(0xff6c63ff),
+        onSelected: (bool selected) {
+          setState(
+            () {
+              _isSelected = !_isSelected;
+            },
+          );
+        },
       ),
-      selected: _isSelected,
-      labelStyle: TextStyle(color: Colors.white),
-      backgroundColor: Color(0xffffffff),
-      selectedColor: Color(0xff6c63ff),
-      onSelected: (bool selected) {
-        setState(
-          () {
-            _isSelected = !_isSelected;
-          },
-        );
-      },
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4),
+            topRight: Radius.circular(4),
+            bottomLeft: Radius.circular(4),
+            bottomRight: Radius.circular(4)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.01),
+            spreadRadius:0.01,
+            blurRadius: 0.01,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+      ),
     );
   }
 }

@@ -372,3 +372,78 @@ class certificateguideline extends StatelessWidget {
     );
   }
 }
+
+
+/*class courseBox extends StatefulWidget {
+  String labelText;
+  bool selected;
+
+  courseBox({Key key, @required this.labelText}) : super(key: key);
+
+  @override
+  courseBoxState createState() => courseBoxState();
+}
+
+class courseBoxState extends State<courseBox> {
+  bool _isSelected = false;
+
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 2.5,right: 2.5,top:2.5,bottom: 3),
+      child: ChoiceChip(
+        elevation: 4,
+        label: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Center(
+            child: Text(
+              widget.labelText,
+              style: TextStyle(
+                color:
+                _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
+              ),
+            ),
+          ),
+        ),
+        visualDensity: VisualDensity.standard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.0),
+          ),
+        ),
+        selected: _isSelected,
+        labelStyle: TextStyle(color: Colors.white),
+        backgroundColor: Color(0xffffffff),
+        selectedColor: Color(0xff6c63ff),
+        onSelected: (bool selected) {
+          setState(
+                () {
+              _isSelected = !_isSelected;
+            },
+          );
+        },
+      ),
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(4),
+            topRight: Radius.circular(4),
+            bottomLeft: Radius.circular(4),
+            bottomRight: Radius.circular(4)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.01),
+            spreadRadius:0.01,
+            blurRadius: 0.01,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+      ),
+    );
+  }
+}*/
+//stack시 클릭 오류 발생
+

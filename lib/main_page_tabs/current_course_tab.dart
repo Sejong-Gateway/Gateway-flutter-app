@@ -6,6 +6,7 @@ import 'package:login_page/pages/profiletag_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class CurrentCourseTab extends StatelessWidget {
+  bool scoreTrue = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -104,51 +105,20 @@ class CurrentCourseTab extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProfileTagPage(),
+                              builder: (context) => futureCourseSelect(mainCallCheck: true,),
                             ),
                           );
                         },
                         color: Color(0xff6c63ff),
                         textColor: Colors.white,
                         child: Text(
-                          "프로필".toUpperCase(),
+                          "이수할 과목 추가".toUpperCase(),
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 154,
-                      height: 37,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          side: BorderSide(
-                            color: Color(0xff6c63ff),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileTagPage(),
-                            ),
-                          );
-                        },
-                        color: Color(0xff6c63ff),
-                        textColor: Colors.white,
-                        child: Text(
-                          "공학인증".toUpperCase(),
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
+                    SizedBox(height: 30,),
                   ],
                 ),
               ],

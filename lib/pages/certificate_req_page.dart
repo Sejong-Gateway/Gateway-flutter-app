@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/pages/main_page.dart';
 
 const GatewayColor = Color(0xff6d69fb);
 
@@ -9,27 +11,24 @@ class CertificateReqInput extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      appBar: this._appBar,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: SvgPicture.asset('asset/Backwardarrow.svg'),
+          color: Color(0xff6d69fb),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: this._body(context),
     );
   }
 }
 
 extension on CertificateReqInput {
-  Widget get _appBar => AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.keyboard_arrow_left,
-            color: GatewayColor,
-          ),
-          iconSize: 33,
-          onPressed: () {},
-        ),
-        toolbarHeight: 44,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      );
-
   Widget _body(BuildContext context) {
     return SafeArea(
       child: ListView(
@@ -156,7 +155,7 @@ extension on CertificateReqInput {
           SizedBox(
             height: 8,
           ),
-          this._engTable(),
+          this._engTable(context),
         ],
       ),
     );
@@ -203,7 +202,7 @@ extension on CertificateReqInput {
     );
   }
 
-  Widget _engTable() {
+  Widget _engTable(context) {
     return Column(
       children: [
         Row(
@@ -263,7 +262,14 @@ extension on CertificateReqInput {
                     color: Color(0xff6c63ff),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Mainpage(),
+                    ),
+                  );
+                },
                 color: Color(0xff6c63ff),
                 textColor: Colors.white,
                 child: Text("완료", style: TextStyle(fontSize: 14)),
@@ -310,7 +316,7 @@ extension on CertificateReqInput {
           ),
           child: Container(
             child: TextFormField(
-
+              //검증해서 점수 적는거 필요
               cursorColor: Colors.black,
               decoration: new InputDecoration(
                 contentPadding: EdgeInsets.only(top: 0, left: 75, bottom: 20),

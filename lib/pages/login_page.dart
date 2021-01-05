@@ -112,17 +112,7 @@ extension on LoginPage {
             fontWeight: FontWeight.w500,
           ),
         ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: TextStyle(
-                color: Color(0xffdbdbdb),
-                fontSize: 12,
-                fontWeight: FontWeight.w300),
-            contentPadding: EdgeInsets.only(top: 13),
-          ),
-          obscureText: activation,
-        ),
+        InputForm(hintText: hintText,activation: activation,),
       ],
     );
   }
@@ -161,6 +151,51 @@ extension on LoginPage {
     );
   }
 }
+
+//textfield input검사를 위한 InputForm
+//그런데 sufficon이 input에 따라 변화하는게 잘 안됨.. global key를 사용해야 할수도?
+class InputForm extends StatefulWidget{
+  String hintText;
+  bool activation;
+  InputForm({Key key,@required this.hintText,this.activation}) : super(key:key);
+  @override
+  InputFormState createState(){
+    return InputFormState();
+  }
+}
+
+class InputFormState extends State<InputForm>{
+  TextEditingController controller= new TextEditingController();
+  @override
+  void initState(){
+    controller = TextEditingController();
+    super.initState();
+  }
+  Widget build(BuildContext){
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        suffixIconConstraints: BoxConstraints(
+          maxHeight: 8,
+          minWidth: 12,
+        ),
+        suffixIcon: controller?.text==null ? null:Container(
+          transform: Matrix4.translationValues(0, 10, 0.0),
+          child: SvgPicture.asset(
+            'asset/Checkbox.svg',
+          ),
+        ),
+        hintStyle: TextStyle(
+            color: Color(0xffdbdbdb),
+            fontSize: 12,
+            fontWeight: FontWeight.w300),
+        contentPadding: EdgeInsets.only(top: 10),
+      ),
+      obscureText: widget.activation,
+    );
+  }
+}
+
 
 //로그인 유지 항목을 위한 StayedLogin
 class StayedLogin extends StatefulWidget {

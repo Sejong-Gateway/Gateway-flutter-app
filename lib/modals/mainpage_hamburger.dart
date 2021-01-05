@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/pages/certificate_guideline.dart';
 import 'package:login_page/pages/profiletag_page.dart';
+import 'package:login_page/pages/signup_page.dart';
 
 class MainpageHamburger {
   String dropValue;
@@ -16,10 +18,8 @@ class MainpageHamburger {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _createTile(
-                  context, '내정보', Icons.keyboard_arrow_right, _action1),
-              _createTile(
-                  context, '공학인증', Icons.keyboard_arrow_right, _action2),
+              _createTile(context, '내정보', Icons.keyboard_arrow_right),
+              _createTile(context, '공학인증', Icons.keyboard_arrow_right),
             ],
           ),
         );
@@ -27,28 +27,28 @@ class MainpageHamburger {
     );
   }
 
-  ListTile _createTile(
-      BuildContext context, String name, IconData icon, Function action) {
+  ListTile _createTile(BuildContext context, String name, IconData icon) {
     return ListTile(
       trailing: Icon(icon),
-      title: Text(name,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
+      title: Text(
+        name,
+        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+      ),
       onTap: () {
-        action();
+        name == "공학인증"
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => certificateguideline(),
+                ),
+              )
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileTagPage(),
+                ),
+              );
       },
     );
-  }
-
-  _action1(context){
-    dropValue = "1";
-    /*Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ProfileTagPage(),
-      ),
-    );*/ //=> 안됨
-  }
-
-  _action2() {
-    dropValue = "2";
   }
 }

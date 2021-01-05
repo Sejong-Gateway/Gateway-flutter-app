@@ -4,13 +4,13 @@ import 'package:login_page/course_select_pages/currentCourseSelect.dart';
 import 'package:login_page/course_select_pages/futureCourseSelect.dart';
 
 class CourseSelect extends StatefulWidget {
+
   @override
   _CourseSelectState createState() => new _CourseSelectState();
 }
 
 class _CourseSelectState extends State<CourseSelect> {
   final _controller = new PageController();
-
   final List<Widget> _pages = <Widget>[
     Container(child: currentCourseSelect()),
     Container(child: futureCourseSelect()),

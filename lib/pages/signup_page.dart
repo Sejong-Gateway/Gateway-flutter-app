@@ -282,6 +282,16 @@ extension on SignupPage {
         TextField(
           decoration: InputDecoration(
             hintText: hintText,
+            suffixIconConstraints: BoxConstraints(
+              maxHeight: 8,
+              minWidth: 12,
+            ),
+            suffixIcon: Container(
+              transform: Matrix4.translationValues(0, 10, 0.0),
+              child: SvgPicture.asset(
+                'asset/Checkbox.svg',
+              ),
+            ),
             hintStyle: TextStyle(
                 color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
             contentPadding: EdgeInsets.only(top: 13),
