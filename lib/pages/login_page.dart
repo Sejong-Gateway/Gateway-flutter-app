@@ -39,10 +39,10 @@ extension on LoginPage {
           children: [
             SizedBox(height: 67),
             Container(
-              width: 81,
-              height: 66,
-              child: SvgPicture.asset('asset/Group155.svg'),
-            ),
+                width: 81,
+                height: 66,
+                child: SvgPicture.asset('asset/Group155.svg',
+                    color: GateWaycolor)),
             Expanded(
               flex: 45,
               child: Container(),
@@ -101,6 +101,8 @@ extension on LoginPage {
   }
 
   //입력 받을 때 사용 widget
+
+  //비밀번호 입력 받을 때 위젯, obscureText사용
   Widget _textField(String labelText, String hintText, bool activation) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,6 +113,15 @@ extension on LoginPage {
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: TextStyle(
+                color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
+            contentPadding: EdgeInsets.zero,
+          ),
+          obscureText: activation,
         ),
         InputForm(hintText: hintText,activation: activation,),
       ],
@@ -136,6 +147,9 @@ extension on LoginPage {
           child: Text("회원가입",
               style: TextStyle(
                   fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: GateWaycolor)),
+          onTap: () => {},
                   fontWeight: FontWeight.w500,
                   color: GateWaycolor)),
           onTap: () => {
@@ -159,7 +173,7 @@ class InputForm extends StatefulWidget{
   bool activation;
   InputForm({Key key,@required this.hintText,this.activation}) : super(key:key);
   @override
-  InputFormState createState(){
+  InputFormState createSt
     return InputFormState();
   }
 }
@@ -196,7 +210,6 @@ class InputFormState extends State<InputForm>{
   }
 }
 
-
 //로그인 유지 항목을 위한 StayedLogin
 class StayedLogin extends StatefulWidget {
   @override
@@ -219,30 +232,25 @@ class _StayedLogin extends State<StayedLogin> {
               });
             },
             child: checkboxValue
-                ? Container(
-                    width: 22,
-                    height: 22,
-                    child: SvgPicture.asset(
-                      'asset/checkerNo.svg',
-                    ),
+                ? Icon(
+                    Icons.check_circle,
+                    color: GateWaycolor,
+                    size: 22,
                   )
-                : Container(
-                    width: 22,
-                    height: 22,
-                    child: SvgPicture.asset(
-                      'asset/checker.svg',
-                    ),
+                : Icon(
+                    Icons.check_circle,
+                    color: Colors.grey,
+                    size: 22,
                   ),
           ),
           SizedBox(width: 8),
-          Text(
-            "로그인 유지",
-            style: TextStyle(
-              fontSize: 14,
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Text("로그인 유지",
+              style: TextStyle(
+                fontSize: 14,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.bold,
+              )),
+
         ],
       ),
     );
