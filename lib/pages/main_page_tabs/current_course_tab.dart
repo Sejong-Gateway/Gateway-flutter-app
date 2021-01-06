@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:login_page/course_select_pages/futureCourseSelect.dart';
+import 'package:login_page/pages/course/futureCourseSelect.dart';
 import 'package:login_page/models/Course_model.dart';
 import 'package:login_page/pages/profiletag_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
