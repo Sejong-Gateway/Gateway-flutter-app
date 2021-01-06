@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as Material;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/course_select_pages/currentCourseSelect.dart';
-import 'package:login_page/modals/signup_department.dart';
-import 'package:login_page/modals/signup_semester.dart';
+import 'package:login_page/pages/course/currentCourseSelect.dart';
+import 'package:login_page/components/modals/signup_department.dart';
+import 'package:login_page/components/modals/signup_semester.dart';
 import 'package:login_page/pages/courseselect_page.dart';
 import 'package:login_page/pages/main_page.dart';
 
@@ -303,7 +304,7 @@ extension on SignupPage {
   }
 
   Widget _verifyButton(bool inputChecks, BuildContext context) {
-    return ButtonTheme(
+    return Material.ButtonTheme(
       height: 48,
       minWidth: 400,
       child: RaisedButton(

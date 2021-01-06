@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/course_select_pages/futureCourseSelect.dart';
-import 'package:login_page/main_page_tabs/current_course_tab.dart';
-import 'package:login_page/main_page_tabs/current_course_tabTrue.dart';
-import 'package:login_page/main_page_tabs/current_tab.dart';
-import 'package:login_page/main_page_tabs/future_course_tab.dart';
-import 'package:login_page/modals/mainpage_hamburger.dart';
-import 'package:login_page/modals/signup_department.dart';
+import 'package:login_page/pages/course/futureCourseSelect.dart';
+import 'package:login_page/pages//main_page_tabs/current_course_tab.dart';
+import 'package:login_page/pages//main_page_tabs/current_course_tabTrue.dart';
+import 'package:login_page/pages//main_page_tabs/current_tab.dart';
+import 'package:login_page/pages//main_page_tabs/future_course_tab.dart';
+import 'package:login_page/components/modals/mainpage_hamburger.dart';
+import 'package:login_page/components/modals/signup_department.dart';
 
-class Mainpage extends StatefulWidget {
-  Mainpage({Key key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => MainPage(),
+    );
+  }
+  MainPage({Key key}) : super(key: key);
 
   @override
-  _mainpage createState() => new _mainpage();
+  _MainPage createState() => new _MainPage();
 }
 
-class _mainpage extends State<Mainpage> {
+class _MainPage extends State<MainPage> {
   MainpageHamburger hamburerModal = new MainpageHamburger();
 
   @override

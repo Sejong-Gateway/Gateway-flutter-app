@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:login_page/course_select_pages/currentCourseSelect.dart';
-import 'package:login_page/course_select_pages/futureCourseSelect.dart';
+import 'package:login_page/pages/course/currentCourseSelect.dart';
+import 'package:login_page/pages/course/futureCourseSelect.dart';
 
 class CourseSelect extends StatefulWidget {
 

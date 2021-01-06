@@ -263,12 +263,7 @@ extension on CertificateReqInput {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Mainpage(),
-                    ),
-                  );
+                  Navigator.of(context).push(MainPage.route());
                 },
                 color: Color(0xff6c63ff),
                 textColor: Colors.white,

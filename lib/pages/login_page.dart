@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/course_select_pages/currentCourseSelect.dart';
+import 'package:login_page/pages/course/currentCourseSelect.dart';
 import 'package:login_page/pages/main_page.dart';
 import 'package:login_page/pages/signup_page.dart';
 
@@ -41,7 +41,8 @@ extension on LoginPage {
             Container(
               width: 81,
               height: 66,
-              child: SvgPicture.asset('asset/Group155.svg'),
+              child:
+                  SvgPicture.asset('asset/Group155.svg', color: GateWaycolor),
             ),
             Expanded(
               flex: 45,
@@ -68,11 +69,11 @@ extension on LoginPage {
               child: RaisedButton(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    side: BorderSide(color: GateWaycolor)),
+                  borderRadius: BorderRadius.circular(4),
+                  side: BorderSide(color: GateWaycolor),
+                ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Mainpage()));
+                  Navigator.of(context).push(MainPage.route());
                 },
                 child: Text(
                   "로그인",
@@ -101,6 +102,8 @@ extension on LoginPage {
   }
 
   //입력 받을 때 사용 widget
+
+  //비밀번호 입력 받을 때 위젯, obscureText사용
   Widget _textField(String labelText, String hintText, bool activation) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +115,10 @@ extension on LoginPage {
             fontWeight: FontWeight.w500,
           ),
         ),
-        InputForm(hintText: hintText,activation: activation,),
+        InputForm(
+          hintText: hintText,
+          activation: activation,
+        ),
       ],
     );
   }
@@ -136,7 +142,7 @@ extension on LoginPage {
           child: Text("회원가입",
               style: TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w700,
                   color: GateWaycolor)),
           onTap: () => {
             Navigator.push(
@@ -154,24 +160,30 @@ extension on LoginPage {
 
 //textfield input검사를 위한 InputForm
 //그런데 sufficon이 input에 따라 변화하는게 잘 안됨.. global key를 사용해야 할수도?
-class InputForm extends StatefulWidget{
+class InputForm extends StatefulWidget {
   String hintText;
   bool activation;
-  InputForm({Key key,@required this.hintText,this.activation}) : super(key:key);
+
+  InputForm({Key key, @required this.hintText, this.activation})
+      : super(key: key);
+
   @override
-  InputFormState createState(){
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
     return InputFormState();
   }
 }
 
-class InputFormState extends State<InputForm>{
-  TextEditingController controller= new TextEditingController();
+class InputFormState extends State<InputForm> {
+  TextEditingController controller = new TextEditingController();
+
   @override
-  void initState(){
+  void initState() {
     controller = TextEditingController();
     super.initState();
   }
-  Widget build(BuildContext){
+
+  Widget build(BuildContext) {
     return TextFormField(
       decoration: InputDecoration(
         hintText: widget.hintText,
@@ -179,12 +191,14 @@ class InputFormState extends State<InputForm>{
           maxHeight: 8,
           minWidth: 12,
         ),
-        suffixIcon: controller?.text==null ? null:Container(
-          transform: Matrix4.translationValues(0, 10, 0.0),
-          child: SvgPicture.asset(
-            'asset/Checkbox.svg',
-          ),
-        ),
+        suffixIcon: controller?.text == null
+            ? null
+            : Container(
+                transform: Matrix4.translationValues(0, 10, 0.0),
+                child: SvgPicture.asset(
+                  'asset/Checkbox.svg',
+                ),
+              ),
         hintStyle: TextStyle(
             color: Color(0xffdbdbdb),
             fontSize: 12,
@@ -195,7 +209,6 @@ class InputFormState extends State<InputForm>{
     );
   }
 }
-
 
 //로그인 유지 항목을 위한 StayedLogin
 class StayedLogin extends StatefulWidget {
@@ -219,19 +232,15 @@ class _StayedLogin extends State<StayedLogin> {
               });
             },
             child: checkboxValue
-                ? Container(
-                    width: 22,
-                    height: 22,
-                    child: SvgPicture.asset(
-                      'asset/checkerNo.svg',
-                    ),
+                ? Icon(
+                    Icons.check_circle,
+                    color: GateWaycolor,
+                    size: 22,
                   )
-                : Container(
-                    width: 22,
-                    height: 22,
-                    child: SvgPicture.asset(
-                      'asset/checker.svg',
-                    ),
+                : Icon(
+                    Icons.check_circle,
+                    color: Colors.grey,
+                    size: 22,
                   ),
           ),
           SizedBox(width: 8),

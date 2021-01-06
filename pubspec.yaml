@@ -28,6 +28,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.18.0
+  get_it:
+  provider: ^2.0.1
+  shared_preferences: ^0.5.12
+  dio: ^3.0.10
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -81,6 +85,13 @@ flutter:
          - asset: asset/fonts/NotoSansCJKkr-Medium.ttf
            weight: 500
          - asset: asset/fonts/NotoSansCJKkr-Bold.ttf
+           weight: 700
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+     - family: NotoSans
+       fonts:
+         - asset: asset/fonts/NotoSansKR-Medium.ttf
+         - asset: asset/fonts/NotoSansKR-Regular.ttf
            weight: 700
   #
   # For details regarding fonts from package dependencies,
