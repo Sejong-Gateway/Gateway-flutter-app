@@ -2,7 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class certificateguideline extends StatelessWidget {
+
+//arrow highlight가 안됨 => 과목 토글은 가능
+class certificateguideline extends StatefulWidget {
+  @override
+  certificateguidelineState createState() => certificateguidelineState();
+}
+
+class certificateguidelineState extends State<certificateguideline> {
+  bool arrowSelect1;
+  bool arrowSelect2;
+  bool _arrowSelect3;
+  bool arrowSelect4;
+  bool arrowSelect5;
+  bool arrowSelect6;
+  bool arrowSelect7;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,12 +65,16 @@ class certificateguideline extends StatelessWidget {
                 Container(
                   //C프로그래밍 - 멀티미디어프로그래밍 화살표
                   padding: EdgeInsets.fromLTRB(277, 92, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow1.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow1.svg',
+                  ),
                 ),
                 Container(
                   //C프로그래밍 - 고급 C프로그래밍 화살표
                   padding: EdgeInsets.fromLTRB(270, 92, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow2.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow2.svg',
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(118, 79, 0, 0),
@@ -75,21 +93,28 @@ class certificateguideline extends StatelessWidget {
                 Container(
                   //공업수학1 - 멀티미디어 프로그래밍: C++ 화살표
                   padding: EdgeInsets.fromLTRB(247, 157, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow3.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow3.svg',color: _arrowSelect3 == true ? Color(0xff6d69fb):Color(0xffefefef)
+                  ),
                 ),
                 Container(
                   //고급 C프로그래밍 - 문제 해결 및 실습: C++ 화살표
                   padding: EdgeInsets.fromLTRB(279, 197, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow4.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow4.svg',
+                  ),
                 ),
                 Container(
                   //자료구조 및 실습 - 알고리즘 및 실습 화살표
                   padding: EdgeInsets.fromLTRB(261, 294, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow5.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow5.svg',
+                  ),
                 ),
+                //색 업데이트 안됨 => 2020 1 6 해결 불가능, state변화 감지가 안됨
                 Container(
                   padding: EdgeInsets.fromLTRB(136, 144, 0, 0),
-                  child: courseBox("공업수학1"),
+                  child: courseBoxes(labelText: "공업수학",xSize: 103,selected: _arrowSelect3=false,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(105, 179, 0, 0),
@@ -130,7 +155,9 @@ class certificateguideline extends StatelessWidget {
                 Container(
                   //통계학개론 - 데이터분석 화살표
                   padding: EdgeInsets.fromLTRB(246, 431, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow6.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow6.svg',
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(120, 379, 0, 0),
@@ -153,7 +180,9 @@ class certificateguideline extends StatelessWidget {
                 Container(
                   //고급실시간그래픽스 - 컴퓨터애니메이션 화살표
                   padding: EdgeInsets.fromLTRB(266, 527, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow7.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow7.svg',
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(136, 479, 0, 0),
@@ -176,7 +205,9 @@ class certificateguideline extends StatelessWidget {
                 Container(
                   //소프트웨어특강1 - 소프트웨어특강2 화살표
                   padding: EdgeInsets.fromLTRB(266, 627, 0, 0),
-                  child: SvgPicture.asset('asset/arrowSVG/arrow8.svg',),
+                  child: SvgPicture.asset(
+                    'asset/arrowSVG/arrow8.svg',
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(116, 579, 0, 0),
@@ -212,7 +243,9 @@ class certificateguideline extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(80, 768, 0, 0),
-                  child: SvgPicture.asset('asset/questionmark.svg',),
+                  child: SvgPicture.asset(
+                    'asset/questionmark.svg',
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(138, 766, 0, 0),
@@ -373,77 +406,59 @@ class certificateguideline extends StatelessWidget {
   }
 }
 
-
-/*class courseBox extends StatefulWidget {
+class courseBoxes extends StatefulWidget {
   String labelText;
   bool selected;
+  double xSize;
 
-  courseBox({Key key, @required this.labelText}) : super(key: key);
+  courseBoxes({Key key, @required this.labelText, this.xSize,this.selected})
+      : super(key: key);
 
   @override
   courseBoxState createState() => courseBoxState();
 }
 
-class courseBoxState extends State<courseBox> {
-  bool _isSelected = false;
-
+class courseBoxState extends State<courseBoxes> {
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 2.5,right: 2.5,top:2.5,bottom: 3),
-      child: ChoiceChip(
-        elevation: 4,
-        label: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Center(
+      child: Center(
+        child: ChoiceChip(
+          padding: EdgeInsets.only(bottom: 8),
+
+          label: Container(
             child: Text(
               widget.labelText,
               style: TextStyle(
-                color:
-                _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
               ),
             ),
           ),
-        ),
-        visualDensity: VisualDensity.standard,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4.0),
+          visualDensity: VisualDensity.standard,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(4.0),
+            ),
+            side: BorderSide(
+              color: widget.selected == true ? Color(0xff6d69fb) : Color(0xfff3f2ff)
+            )
           ),
+          selected: widget.selected,
+          labelStyle: TextStyle(color: Colors.white),
+          backgroundColor: Color(0xfff3f2ff),
+          selectedColor: Color(0xffbeb9ff),
+          onSelected: (selected) {
+            setState(
+              () {
+                this.widget.selected = !this.widget.selected;
+              },
+            );
+          },
         ),
-        selected: _isSelected,
-        labelStyle: TextStyle(color: Colors.white),
-        backgroundColor: Color(0xffffffff),
-        selectedColor: Color(0xff6c63ff),
-        onSelected: (bool selected) {
-          setState(
-                () {
-              _isSelected = !_isSelected;
-            },
-          );
-        },
       ),
-      height: double.infinity,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(4),
-            topRight: Radius.circular(4),
-            bottomLeft: Radius.circular(4),
-            bottomRight: Radius.circular(4)
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.01),
-            spreadRadius:0.01,
-            blurRadius: 0.01,
-            offset: Offset(0, 1), // changes position of shadow
-          ),
-        ],
-      ),
+      height: 26,
+      width: widget.xSize,
     );
   }
-}*/
-//stack시 클릭 오류 발생
-
+}
