@@ -2,22 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/models/Course_model.dart';
+import 'package:login_page/pages/course_select_pages/current_select_p2.dart';
+import 'package:login_page/pages/course_select_pages/current_select_p3.dart';
+import 'package:login_page/pages/course_select_pages/future_select_p3.dart';
 
 //117번째 줄 PageController.page cannot be accessed before a PageView is built with it. 오류 발생
 //future widget으로 만들라는데.. 그래도 되는건가??
-class currentCourseSelect extends StatelessWidget {
+class futureCourseSelectPage2 extends StatelessWidget {
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => futureCourseSelectPage2(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CurrentCourseSelect();
+    return FutureCourseSelect2();
   }
 }
 
-class CurrentCourseSelect extends StatefulWidget {
+class FutureCourseSelect2 extends StatefulWidget {
   @override
-  CurrentCourseSelectState createState() => CurrentCourseSelectState();
+  FutureCourseSelectState2 createState() => FutureCourseSelectState2();
 }
 
-class CurrentCourseSelectState extends State<CurrentCourseSelect> {
+class FutureCourseSelectState2 extends State<FutureCourseSelect2> {
   final _controller = new PageController();
   static const _kDuration = const Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
@@ -48,7 +57,6 @@ class CurrentCourseSelectState extends State<CurrentCourseSelect> {
       ),
       body: Container(
         color: Colors.white,
-
         padding: EdgeInsets.symmetric(horizontal: 31),
         child: ListView(
           children: [
@@ -59,7 +67,7 @@ class CurrentCourseSelectState extends State<CurrentCourseSelect> {
                   height: 70,
                 ),
                 Text(
-                  "이수한 과목을 선택해주세요",
+                  "이수할 과목을 선택해주세요",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
               ],
@@ -70,7 +78,7 @@ class CurrentCourseSelectState extends State<CurrentCourseSelect> {
             Row(
               children: [
                 Text(
-                  "교양필수",
+                  "전공",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
               ],
@@ -97,15 +105,15 @@ class CurrentCourseSelectState extends State<CurrentCourseSelect> {
                       ),
                     ),
                     onPressed: () {
-                      _controller.nextPage(
-                          duration: _kDuration, curve: _kCurve);
+                      Navigator.of(context)
+                          .push(futureCourseSelectPage3.route());
                     },
                     color: Color(0xff6c63ff),
                     textColor: Colors.white,
                     child: Text(
                       "다음".toUpperCase(),
                       style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                      TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -130,12 +138,17 @@ class CurrentCourseSelectState extends State<CurrentCourseSelect> {
         childAspectRatio: 2.65,
         children: [
           ...courseList.map(
-            (CourseModel subject) {
-              return Center(
-                child: _currentCourseBox(
-                  labelText: subject.name,
-                ),
-              );
+                (CourseModel subject) {
+              if(subject.type == "전필"){
+                return Center(
+                  child: _currentCourseBox(
+                    labelText: subject.name,
+                  ),
+                );
+              }
+              else{
+                return Container();
+              }
             },
           ).toList(),
         ],
@@ -159,7 +172,7 @@ class _currentCourseState extends State<_currentCourseBox> {
 
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 2.5,right: 2.5,top:2.5,bottom: 3),
+      margin: EdgeInsets.only(left: 2.5, right: 2.5, top: 2.5, bottom: 3),
       child: ChoiceChip(
         elevation: 4,
         label: Container(
@@ -170,7 +183,7 @@ class _currentCourseState extends State<_currentCourseBox> {
               widget.labelText,
               style: TextStyle(
                 color:
-                    _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
+                _isSelected == true ? Color(0xffffffff) : Color(0xff6c63ff),
               ),
             ),
           ),
@@ -187,7 +200,7 @@ class _currentCourseState extends State<_currentCourseBox> {
         selectedColor: Color(0xff6c63ff),
         onSelected: (bool selected) {
           setState(
-            () {
+                () {
               _isSelected = !_isSelected;
             },
           );
@@ -201,12 +214,11 @@ class _currentCourseState extends State<_currentCourseBox> {
             topLeft: Radius.circular(4),
             topRight: Radius.circular(4),
             bottomLeft: Radius.circular(4),
-            bottomRight: Radius.circular(4)
-        ),
+            bottomRight: Radius.circular(4)),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.01),
-            spreadRadius:0.01,
+            spreadRadius: 0.01,
             blurRadius: 0.01,
             offset: Offset(0, 1), // changes position of shadow
           ),

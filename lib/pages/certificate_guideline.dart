@@ -5,6 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 //arrow highlight가 안됨 => 과목 토글은 가능
 class certificateguideline extends StatefulWidget {
+
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>certificateguideline(),
+    );
+  }
+
   @override
   certificateguidelineState createState() => certificateguidelineState();
 }

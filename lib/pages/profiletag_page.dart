@@ -7,6 +7,13 @@ import 'package:login_page/models/Course_model.dart';
 const GatewayColor = Color(0xff6d69fb);
 
 class ProfileTagPage extends StatelessWidget {
+
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>ProfileTagPage(),
+    );
+  }
+
   List<CourseModel> courseList = [
     CourseModel.dummy(),
     CourseModel.dummy(),

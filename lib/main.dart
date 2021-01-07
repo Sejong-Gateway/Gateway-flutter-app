@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/core/di_container.dart';
+import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
 import 'package:login_page/pages/splash_page.dart';
 import 'pages/login_page.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightBlue,
         fontFamily: 'Nato',
       ),
-      onGenerateRoute: (_) => SplashPage.route(),
+      onGenerateRoute: (_) => LoginPage.route(),
     );
   }
 }

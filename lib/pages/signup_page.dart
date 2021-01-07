@@ -2,15 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as Material;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/pages/course/currentCourseSelect.dart';
 import 'package:login_page/components/modals/signup_department.dart';
 import 'package:login_page/components/modals/signup_semester.dart';
-import 'package:login_page/pages/courseselect_page.dart';
+import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
 import 'package:login_page/pages/main_page.dart';
 
 class SignupPage extends StatelessWidget {
-  //static Color purpleCustom = HexColor.fromHex('#6c63ff');
-  //purple custom not working
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>SignupPage()
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -287,12 +289,6 @@ extension on SignupPage {
               maxHeight: 8,
               minWidth: 12,
             ),
-            suffixIcon: Container(
-              transform: Matrix4.translationValues(0, 10, 0.0),
-              child: SvgPicture.asset(
-                'asset/Checkbox.svg',
-              ),
-            ),
             hintStyle: TextStyle(
                 color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
             contentPadding: EdgeInsets.only(top: 13),
@@ -315,12 +311,8 @@ extension on SignupPage {
           ),
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CourseSelect(),
-            ),
-          );
+          Navigator.of(context)
+              .push(currentCourseSelectPage1.route());
         },
         child: Text(
           "회원가입",

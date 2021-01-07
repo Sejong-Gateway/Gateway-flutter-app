@@ -1,11 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:login_page/pages/course/futureCourseSelect.dart';
 import 'package:login_page/models/Course_model.dart';
+import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
 import 'package:login_page/pages/profiletag_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+
+//여기에도 static Route가 필요한지는 모르겠지만, 간단히 적겠습니다.
 class CurrentCourseTab extends StatelessWidget {
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>CurrentCourseTab(),
+    );
+  }
   bool scoreTrue = false;
   @override
   Widget build(BuildContext context) {
@@ -102,12 +109,8 @@ class CurrentCourseTab extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => futureCourseSelect(mainCallCheck: true,),
-                            ),
-                          );
+                          Navigator.of(context)
+                              .push(currentCourseSelectPage1.route());
                         },
                         color: Color(0xff6c63ff),
                         textColor: Colors.white,

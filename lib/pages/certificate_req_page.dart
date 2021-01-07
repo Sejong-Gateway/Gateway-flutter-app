@@ -6,6 +6,12 @@ import 'package:login_page/pages/main_page.dart';
 const GatewayColor = Color(0xff6d69fb);
 
 class CertificateReqInput extends StatelessWidget {
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>CertificateReqInput(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
