@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/pages/main_page.dart';
 
@@ -247,11 +248,11 @@ extension on CertificateReqInput {
             ),
           ],
         ),
-        this._tableScoreInput("TOEIC"),
-        this._tableScoreInput("IBT"),
-        this._tableScoreInput("TEPS"),
-        this._tableScoreInput("OPIc"),
-        this._tableScoreInput("TOEIC Speaking"),
+        this._tableScoreInput("TOEIC",700),
+        this._tableScoreInput("IBT",700),
+        this._tableScoreInput("TEPS",700),
+        this._tableScoreInput("OPIc",700),
+        this._tableScoreInput("TOEIC Speaking",700),
         SizedBox(
           height: 31,
         ),
@@ -285,7 +286,7 @@ extension on CertificateReqInput {
     );
   }
 
-  Widget _tableScoreInput(String courseLabel) {
+  Widget _tableScoreInput(String courseLabel,int courseScore) {
     return Row(
       children: [
         Container(
@@ -316,16 +317,21 @@ extension on CertificateReqInput {
             color: Color(0xffe5e3ff),
           ),
           child: Container(
+            padding: EdgeInsets.only(right:65),
             child: TextFormField(
               //검증해서 점수 적는거 필요
+              style: TextStyle(fontSize: 8, fontWeight: FontWeight.w300 ),
+              textAlign: TextAlign.end,
               cursorColor: Colors.black,
               decoration: new InputDecoration(
-                contentPadding: EdgeInsets.only(top: 0, left: 75, bottom: 20),
-                border: InputBorder.none,
-                //labelstyle 작동 안됨
-                //labelStyle: TextStyle(fontSize: 8),
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 0, left: 0, bottom: 20,right:0),
+               //prefixStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
                 hintText: "점수를 입력해주세요",
                 hintStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
+                suffixText : '/$courseScore',
+                suffixStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
               ),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/models/Course_model.dart';
 import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
+import 'package:login_page/pages/course_select_pages/future_select_p1.dart';
 import 'package:login_page/pages/profiletag_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -110,7 +111,7 @@ class CurrentCourseTab extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context)
-                              .push(currentCourseSelectPage1.route());
+                              .push(futureCourseSelectPage1.route());
                         },
                         color: Color(0xff6c63ff),
                         textColor: Colors.white,
