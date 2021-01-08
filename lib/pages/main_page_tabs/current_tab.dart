@@ -6,6 +6,12 @@ import 'package:percent_indicator/percent_indicator.dart';
 const GatewayColor = Color(0xff6c63ff);
 
 class CurrentStatusTab extends StatelessWidget {
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>CurrentStatusTab(),
+    );
+  }
+
   static bool engScoreActive = true;
 
   @override

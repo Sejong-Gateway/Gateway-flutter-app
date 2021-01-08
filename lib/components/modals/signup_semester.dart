@@ -13,12 +13,16 @@ class semesterModal {
       builder: (BuildContext context) {
         return Padding(
           padding: EdgeInsets.only(top: 14, left: 23),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
             children: <Widget>[
-              _createTile(context, '새내기', _action1),
-              _createTile(context, '헌내기', _action2),
-              _createTile(context, '암모나이트', _action3),
+              _createTile(context, '1-1', _action1),
+              _createTile(context, '1-2', _action2),
+              _createTile(context, '2-1', _action3),
+              _createTile(context, '2-2', _action3),
+              _createTile(context, '3-1', _action3),
+              _createTile(context, '3-2', _action3),
+              _createTile(context, '4-1', _action3),
+              _createTile(context, '4-2', _action3),
             ],
           ),
         );

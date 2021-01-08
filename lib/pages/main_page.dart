@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/pages/course/futureCourseSelect.dart';
 import 'package:login_page/pages//main_page_tabs/current_course_tab.dart';
 import 'package:login_page/pages//main_page_tabs/current_course_tabTrue.dart';
 import 'package:login_page/pages//main_page_tabs/current_tab.dart';
 import 'package:login_page/pages//main_page_tabs/future_course_tab.dart';
 import 'package:login_page/components/modals/mainpage_hamburger.dart';
 import 'package:login_page/components/modals/signup_department.dart';
+
+
 
 class MainPage extends StatefulWidget {
   static Route route() {

@@ -16,11 +16,9 @@ class departmentModal {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                _createTile(context, '기린', _action1),
-                _createTile(context, '토끼', _action2),
-                _createTile(context, '거북이', _action3),
-                _createTile(context, '거북이', _action3),
-                _createTile(context, '거북이', _action3),
+                _createTile(context, '컴퓨터공학과', _action1),
+                _createTile(context, '소프트웨어공학', _action2),
+                _createTile(context, '디자인이노베이션', _action3),
               ],
             ),
           );
