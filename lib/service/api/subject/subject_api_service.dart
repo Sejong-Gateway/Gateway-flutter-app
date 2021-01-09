@@ -3,7 +3,6 @@ import 'package:login_page/core/di_container.dart';
 import 'package:login_page/models/subject_model.dart';
 import 'package:login_page/service/api/auth/auth_api.dart';
 import 'package:login_page/service/api/subject/subject_api.dart';
-import 'package:login_page/utils/token_storage.dart';
 
 import '../service.dart';
 

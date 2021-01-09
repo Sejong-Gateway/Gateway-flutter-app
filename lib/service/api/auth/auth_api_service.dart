@@ -1,20 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:login_page/core/di_container.dart';
 import 'package:login_page/service/api/auth/auth_api.dart';
-import 'package:login_page/utils/token_storage.dart';
-
+import 'package:login_page/service/api/common/token.dart';
 import '../service.dart';
 
 class AuthApiService with ApiService implements AuthApi {
-  // TokenStorage _tokenStorage = diContainer<TokenStorage>();
-
   @override
-  Future<void> login(String studentId, String password) async {
-    // var accessToken = await _tokenStorage.get();
-
+  Future<String> login(String studentId, String password) async {
     Response res = await dio.post(
       "/user/login",
+      data: {
+        "studentId" : studentId,
+        "user_pw" : password,
+      }
     );
+
+    if ( res.statusCode == 200 ){
+      return res.data["data"]["token"];
+    }
   }
 
   @override

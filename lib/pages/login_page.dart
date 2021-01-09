@@ -52,12 +52,12 @@ extension on LoginPage {
               flex: 45,
               child: Container(),
             ),
-            this._textField("학번", "학번을 입력해주세요", false),
+            this._textField("학번", "학번을 입력해주세요", false, model.studentId),
             Expanded(
               flex: 45,
               child: Container(),
             ),
-            this._textField("비밀번호", "비밀번호를 입력해주세요", true),
+            this._textField("비밀번호", "비밀번호를 입력해주세요", true, model.userPw),
             Expanded(
               flex: 19,
               child: Container(),
@@ -77,7 +77,7 @@ extension on LoginPage {
                   side: BorderSide(color: GateWaycolor),
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MainPage.route());
+                 model.onClickLogin(context);
                 },
                 child: Text(
                   "로그인",
@@ -108,7 +108,7 @@ extension on LoginPage {
   //입력 받을 때 사용 widget
 
   //비밀번호 입력 받을 때 위젯, obscureText사용
-  Widget _textField(String labelText, String hintText, bool activation) {
+  Widget _textField(String labelText, String hintText, bool activation, TextEditingController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,6 +120,7 @@ extension on LoginPage {
           ),
         ),
         InputForm(
+          controller: controller,
           hintText: hintText,
           activation: activation,
         ),
@@ -163,8 +164,9 @@ extension on LoginPage {
 class InputForm extends StatefulWidget {
   String hintText;
   bool activation;
+  final TextEditingController controller;
 
-  InputForm({Key key, @required this.hintText, this.activation})
+  InputForm({Key key, @required this.hintText, this.activation, this.controller})
       : super(key: key);
 
   @override
@@ -185,6 +187,7 @@ class InputFormState extends State<InputForm> {
 
   Widget build(BuildContext) {
     return TextFormField(
+      controller: widget.controller,
       decoration: InputDecoration(
         hintText: widget.hintText,
         suffixIconConstraints: BoxConstraints(

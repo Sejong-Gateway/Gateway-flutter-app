@@ -1,5 +1,5 @@
 abstract class AuthApi {
-  Future<void> login(String studentId, String password);
+  Future<String> login(String studentId, String password);
 
   Future<void> register(
     String studentId,
