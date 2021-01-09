@@ -5,6 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 //arrow highlight가 안됨 => 과목 토글은 가능
 class certificateguideline extends StatefulWidget {
+
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>certificateguideline(),
+    );
+  }
+
   @override
   certificateguidelineState createState() => certificateguidelineState();
 }
@@ -17,6 +24,11 @@ class certificateguidelineState extends State<certificateguideline> {
   bool arrowSelect5;
   bool arrowSelect6;
   bool arrowSelect7;
+  void refresh(dynamic childValue) {
+    setState(() {
+      _arrowSelect3 = childValue;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -114,7 +126,7 @@ class certificateguidelineState extends State<certificateguideline> {
                 //색 업데이트 안됨 => 2020 1 6 해결 불가능, state변화 감지가 안됨
                 Container(
                   padding: EdgeInsets.fromLTRB(136, 144, 0, 0),
-                  child: courseBoxes(labelText: "공업수학",xSize: 103,selected: _arrowSelect3=false,),
+                  child: courseBoxes(labelText: "공업수학",xSize: 103,notifyParent: refresh,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(105, 179, 0, 0),
@@ -408,10 +420,9 @@ class certificateguidelineState extends State<certificateguideline> {
 
 class courseBoxes extends StatefulWidget {
   String labelText;
-  bool selected;
   double xSize;
-
-  courseBoxes({Key key, @required this.labelText, this.xSize,this.selected})
+  Function(dynamic) notifyParent;
+  courseBoxes({Key key, @required this.labelText, this.xSize,this.notifyParent})
       : super(key: key);
 
   @override
@@ -419,6 +430,7 @@ class courseBoxes extends StatefulWidget {
 }
 
 class courseBoxState extends State<courseBoxes> {
+  bool selected = false;
   Widget build(BuildContext context) {
     return Container(
       child: Center(
@@ -441,17 +453,18 @@ class courseBoxState extends State<courseBoxes> {
               Radius.circular(4.0),
             ),
             side: BorderSide(
-              color: widget.selected == true ? Color(0xff6d69fb) : Color(0xfff3f2ff)
+              color:selected == true ? Color(0xff6d69fb) : Color(0xfff3f2ff)
             )
           ),
-          selected: widget.selected,
+          selected: selected,
           labelStyle: TextStyle(color: Colors.white),
           backgroundColor: Color(0xfff3f2ff),
           selectedColor: Color(0xffbeb9ff),
           onSelected: (selected) {
             setState(
               () {
-                this.widget.selected = !this.widget.selected;
+                this.selected = !this.selected;
+                widget.notifyParent(this.selected);
               },
             );
           },
