@@ -1,5 +1,7 @@
+import 'package:login_page/models/user_model.dart';
+
 abstract class AuthApi {
-  Future<void> login(String studentId, String password);
+  Future<String> login(String studentId, String password);
 
   Future<void> register(
     String studentId,
@@ -20,4 +22,6 @@ abstract class AuthApi {
     List<String> currentSubjects,
     List<String> completeSubjects,
   );
+
+  Future<UserModel> getUserInfo(String accessToken);
 }

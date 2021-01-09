@@ -55,7 +55,6 @@ class _MainPage extends State<MainPage> {
                               tabs: [
                                 Tab(
                                   child: Container(
-                                    padding: EdgeInsets.only(left: 5),
                                     child: Text(
                                       "나의 현황",
                                       style: TextStyle(
