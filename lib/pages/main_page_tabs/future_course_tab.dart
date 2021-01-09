@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:login_page/models/Course_model.dart';
 
 class futureCoursetab extends StatelessWidget {
+
+  static Route route(){
+    return MaterialPageRoute<void>(
+      builder: (_)=>futureCoursetab(),
+    );
+  }
+
   List<CourseModel> courseList = [
     CourseModel.dummy(),
     CourseModel.dummy(),

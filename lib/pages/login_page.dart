@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/pages/course/currentCourseSelect.dart';
 import 'package:login_page/pages/main_page.dart';
 import 'package:login_page/pages/signup_page.dart';
 
@@ -10,6 +9,12 @@ const GateWaycolor = Color(0xff6c63ff);
 
 //LoginPage를 위한 statelesswidget
 class LoginPage extends StatelessWidget {
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => LoginPage(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,13 +149,9 @@ extension on LoginPage {
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: GateWaycolor)),
-          onTap: () => {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SignupPage(),
-              ),
-            ),
+          onTap: ()  {
+            Navigator.of(context)
+                .push(SignupPage.route());
           },
         ),
       ],
@@ -191,14 +192,6 @@ class InputFormState extends State<InputForm> {
           maxHeight: 8,
           minWidth: 12,
         ),
-        suffixIcon: controller?.text == null
-            ? null
-            : Container(
-                transform: Matrix4.translationValues(0, 10, 0.0),
-                child: SvgPicture.asset(
-                  'asset/Checkbox.svg',
-                ),
-              ),
         hintStyle: TextStyle(
             color: Color(0xffdbdbdb),
             fontSize: 12,
