@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/core/di_container.dart';
 import 'package:login_page/pages/certificate_req_page.dart';
-import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
 import 'package:login_page/pages/splash_page.dart';
-import 'pages/login_page.dart';
+import 'package:login_page/utils/gateway_color.dart';
+
 
 Future<void> main() async {
   setupDiContainer();
@@ -17,10 +17,14 @@ class MyApp extends StatelessWidget {
       title: 'GatewayApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
-        fontFamily: 'Nato',
+        primaryColor: Color(0xff6c63ff),
+        splashColor: Colors.white,
+        disabledColor: Color(0xffdedfe5),
+        buttonColor: Colors.white,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: "Noto",
       ),
-      onGenerateRoute: (_) => CertificateReqInput.route(),
+      onGenerateRoute: (_) => SplashPage.route(),
     );
   }
 }

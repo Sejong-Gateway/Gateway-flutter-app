@@ -2,41 +2,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/pages/main_page.dart';
+import 'package:login_page/viewmodel/certificate_req_viewmodel.dart';
 
 const GatewayColor = Color(0xff6d69fb);
 
 class CertificateReqInput extends StatelessWidget {
-  static Route route(){
+  static Route route() {
     return MaterialPageRoute<void>(
-      builder: (_)=>CertificateReqInput(),
+      builder: (_) => CertificateReqInput(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-          color: Color(0xff6d69fb),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        toolbarHeight: 44,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
-      body: this._body(context),
+    return BaseScreen<CertificateReqViewModel>(
+      builder: (context, model, child) {
+        return Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            leading: IconButton(
+              icon: SvgPicture.asset('asset/Backwardarrow.svg'),
+              color: Color(0xff6d69fb),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            toolbarHeight: 44,
+            backgroundColor: Colors.white,
+            elevation: 0,
+          ),
+          body: this._body(context, model),
+        );
+      },
     );
   }
 }
 
 extension on CertificateReqInput {
-  Widget _body(BuildContext context) {
+  Widget _body(BuildContext context, CertificateReqViewModel model) {
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 36),
@@ -74,19 +80,19 @@ extension on CertificateReqInput {
           SizedBox(
             height: 26,
           ),
-          this._textField('서양의 역사와 사상', '권'),
+          this._textField('서양의 역사와 사상', '권', model.westernBook),
           SizedBox(
             height: 15,
           ),
-          this._textField('동양의 역사와 사상', '권'),
+          this._textField('동양의 역사와 사상', '권', model.easternBook),
           SizedBox(
             height: 15,
           ),
-          this._textField('동서양의 문학', '권'),
+          this._textField('동서양의 문학', '권', model.literatureBook),
           SizedBox(
             height: 15,
           ),
-          this._textField('과학 사상', '권'),
+          this._textField('과학 사상', '권', model.scienceBook),
           SizedBox(
             height: 23,
           ),
@@ -116,7 +122,7 @@ extension on CertificateReqInput {
           SizedBox(
             height: 15,
           ),
-          this._textField('봉사시간', '시간'),
+          this._textField('봉사시간', '시간', model.volunteerTime),
           SizedBox(
             height: 23,
           ),
@@ -162,13 +168,13 @@ extension on CertificateReqInput {
           SizedBox(
             height: 8,
           ),
-          this._engTable(context),
+          this._engTable(context, model),
         ],
       ),
     );
   }
 
-  Widget _textField(String courseText, String countText) {
+  Widget _textField(String courseText, String countText, TextEditingController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -184,6 +190,7 @@ extension on CertificateReqInput {
             Container(
               width: 30,
               child: TextField(
+                controller: controller,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(top: 0, left: 15),
                   isDense: true,
@@ -209,7 +216,7 @@ extension on CertificateReqInput {
     );
   }
 
-  Widget _engTable(context) {
+  Widget _engTable(context, CertificateReqViewModel model) {
     return Column(
       children: [
         Row(
@@ -248,11 +255,11 @@ extension on CertificateReqInput {
             ),
           ],
         ),
-        this._tableScoreInput("TOEIC",700),
-        this._tableScoreInput("IBT",700),
-        this._tableScoreInput("TEPS",700),
-        this._tableScoreInput("OPIc",700),
-        this._tableScoreInput("TOEIC Speaking",700),
+        this._tableScoreInput("TOEIC",700, model.toeic),
+        this._tableScoreInput("IBT",700, model.ibt),
+        this._tableScoreInput("TEPS",700, model.teps),
+        this._tableScoreInput("OPIc",700, model.opic),
+        this._tableScoreInput("TOEIC Speaking",700, model.toeicSpeaking),
         SizedBox(
           height: 31,
         ),
@@ -270,6 +277,7 @@ extension on CertificateReqInput {
                   ),
                 ),
                 onPressed: () {
+                  model.onClickNext();
                   Navigator.of(context).push(MainPage.route());
                 },
                 color: Color(0xff6c63ff),
@@ -286,7 +294,7 @@ extension on CertificateReqInput {
     );
   }
 
-  Widget _tableScoreInput(String courseLabel,int courseScore) {
+  Widget _tableScoreInput(String courseLabel,int courseScore, TextEditingController controller) {
     return Row(
       children: [
         Container(
@@ -319,6 +327,7 @@ extension on CertificateReqInput {
           child: Container(
             padding: EdgeInsets.only(right:65),
             child: TextFormField(
+              controller: controller,
               //검증해서 점수 적는거 필요
               style: TextStyle(fontSize: 8, fontWeight: FontWeight.w300 ),
               textAlign: TextAlign.end,

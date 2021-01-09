@@ -111,7 +111,7 @@ class CurrentCourseTab extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context)
-                              .push(futureCourseSelectPage1.route());
+                              .push(FutureCourseSelectPage1.route());
                         },
                         color: Color(0xff6c63ff),
                         textColor: Colors.white,

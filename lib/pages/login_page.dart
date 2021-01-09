@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/pages/main_page.dart';
 import 'package:login_page/pages/signup_page.dart';
+import 'package:login_page/viewmodel/login_viewmodel.dart';
 
 //Gateway 색 적용
 const GateWaycolor = Color(0xff6c63ff);
@@ -17,24 +19,21 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      appBar: this._appBar,
-      body: this._body(context),
+    return BaseScreen<LoginViewModel>(
+      builder: (context, model, child){
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          body: this._body(context, model),
+        );
+      },
     );
   }
 }
 
 //Login page 확장
 extension on LoginPage {
-  Widget get _appBar => AppBar(
-        toolbarHeight: 44,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      );
-
-  Widget _body(BuildContext context) {
+  Widget _body(BuildContext context, LoginViewModel model) {
     return SafeArea(
       child: Container(
         height: MediaQuery.of(context).size.height,
@@ -42,7 +41,7 @@ extension on LoginPage {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 67),
+            SizedBox(height: 123),
             Container(
               width: 81,
               height: 66,
@@ -95,7 +94,7 @@ extension on LoginPage {
               flex: 33,
               child: Container(),
             ),
-            this._signup(context),
+            this._signup(context, model),
             Expanded(
               flex: 170,
               child: Container(),
@@ -129,7 +128,7 @@ extension on LoginPage {
   }
 
   //회원 가입 페이지 위한 버튼
-  Widget _signup(BuildContext context) {
+  Widget _signup(BuildContext context, LoginViewModel model) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -144,15 +143,15 @@ extension on LoginPage {
           width: 10,
         ),
         InkWell(
-          child: Text("회원가입",
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: GateWaycolor)),
-          onTap: ()  {
-            Navigator.of(context)
-                .push(SignupPage.route());
-          },
+          child: Text(
+            "회원가입",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: GateWaycolor,
+            ),
+          ),
+          onTap: () => model.onClickRegister(context),
         ),
       ],
     );
