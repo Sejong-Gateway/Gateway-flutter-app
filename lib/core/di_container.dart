@@ -3,6 +3,7 @@ import 'package:login_page/service/api/auth/auth_api.dart';
 import 'package:login_page/service/api/auth/auth_api_service.dart';
 import 'package:login_page/service/api/subject/subject_api.dart';
 import 'package:login_page/service/api/subject/subject_api_service.dart';
+import 'package:login_page/viewmodel/certificate_req_viewmodel.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
 import 'package:login_page/viewmodel/login_viewmodel.dart';
 import 'package:login_page/viewmodel/register_viewmodel.dart';
@@ -16,6 +17,7 @@ void setupDiContainer() {
   diContainer.registerFactory(() => CurrentSelectViewModel());
   diContainer.registerFactory(() => RegisterViewModel());
   diContainer.registerFactory(() => LoginViewModel());
+  diContainer.registerFactory(() => CertificateReqViewModel());
 
 //  API 도 마찬가지로 LazySingleton으로 처리
   diContainer.registerLazySingleton<AuthApi>(() => AuthApiService());

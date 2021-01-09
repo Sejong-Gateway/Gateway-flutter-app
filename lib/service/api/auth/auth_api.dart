@@ -1,7 +1,7 @@
 abstract class AuthApi {
   Future<void> login(String studentId, String password);
 
-  Future<void> register({
+  Future<void> register(
     String studentId,
     String user_pw,
     String semester,
@@ -19,5 +19,5 @@ abstract class AuthApi {
     int toeicSpeaking,
     List<String> currentSubjects,
     List<String> completeSubjects,
-  });
+  );
 }

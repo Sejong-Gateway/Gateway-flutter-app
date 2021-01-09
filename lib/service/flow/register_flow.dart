@@ -24,6 +24,28 @@ class RegisterFlow extends ApiService with AuthApiService {
 
   RegisterFlow();
 
+  void registerUser() async{
+    await super.register(
+      studentId,
+      user_pw,
+      semester,
+      major,
+      abeek,
+      westernBook,
+      easternBook,
+      literatureBook,
+      scienceBook,
+      volunteerTime,
+      toeic,
+      ibt,
+      teps,
+      opic,
+      toeicSpeaking,
+      currentSubjects,
+      completeSubjects,
+    );
+  }
+
   void setUserInfo({studentId, user_pw, semester, major, abeek}) {
     this.studentId = studentId;
     this.user_pw = user_pw;
@@ -58,16 +80,16 @@ class RegisterFlow extends ApiService with AuthApiService {
     opic,
     toeicSpeaking,
   }) {
-    this.westernBook = westernBook;
-    this.easternBook = easternBook;
-    this.literatureBook = literatureBook;
-    this.volunteerTime = volunteerTime;
-    this.toeic = toeic;
-    this.ibt = ibt;
-    this.teps = teps;
-    this.opic = opic;
-    this.toeicSpeaking = toeicSpeaking;
+    print(literatureBook);
+    this.westernBook = int.parse(westernBook);
+    this.easternBook = int.parse(easternBook);
+    this.literatureBook = int.parse(literatureBook);
+    this.volunteerTime = int.parse(volunteerTime);
+    this.toeic = int.parse(toeic);
+    this.ibt = int.parse(ibt);
+    this.teps = int.parse(teps);
+    this.opic = int.parse(opic);
+    this.toeicSpeaking = int.parse(toeicSpeaking);
+
   }
-
-
 }

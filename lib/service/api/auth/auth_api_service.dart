@@ -18,7 +18,7 @@ class AuthApiService with ApiService implements AuthApi {
   }
 
   @override
-  Future<void> register({
+  Future<void> register(
     String studentId,
     String user_pw,
     String semester,
@@ -36,7 +36,7 @@ class AuthApiService with ApiService implements AuthApi {
     int toeicSpeaking,
     List<String> currentSubjects,
     List<String> completeSubjects,
-  }) async{
+  ) async{
     Response res = await dio.post(
       "/user/register",
       data: {
