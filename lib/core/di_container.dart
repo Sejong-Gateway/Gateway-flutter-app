@@ -7,6 +7,7 @@ import 'package:login_page/service/api/subject/subject_api_service.dart';
 import 'package:login_page/viewmodel/certificate_req_viewmodel.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
 import 'package:login_page/viewmodel/login_viewmodel.dart';
+import 'package:login_page/viewmodel/main_viewmodel.dart';
 import 'package:login_page/viewmodel/register_viewmodel.dart';
 import 'package:login_page/viewmodel/splash_viewmodel.dart';
 
@@ -19,6 +20,7 @@ void setupDiContainer() {
   diContainer.registerFactory(() => RegisterViewModel());
   diContainer.registerFactory(() => LoginViewModel());
   diContainer.registerFactory(() => CertificateReqViewModel());
+  diContainer.registerFactory(() => MainViewModel());
 
 //  API 도 마찬가지로 LazySingleton으로 처리
   diContainer.registerFactory(() => TokenService());

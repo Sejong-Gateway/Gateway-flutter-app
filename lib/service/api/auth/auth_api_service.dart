@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:login_page/core/di_container.dart';
+import 'package:login_page/models/user_model.dart';
 import 'package:login_page/service/api/auth/auth_api.dart';
 import 'package:login_page/service/api/common/token.dart';
 import '../service.dart';
@@ -63,4 +64,19 @@ class AuthApiService with ApiService implements AuthApi {
       }
     );
   }
+
+  @override
+  Future<UserModel> getUserInfo(String accessToken) async{
+    Options options = Options(headers: {"x-access-token": accessToken});
+    Response res = await dio.get(
+        "/user/check",
+        options: options,
+    );
+
+    if ( res.statusCode == 200 ){
+      return UserModel.fromJson(res.data["data"]);
+    }
+  }
+
+
 }
