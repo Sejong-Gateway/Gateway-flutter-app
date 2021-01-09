@@ -24,6 +24,42 @@ class certificateguidelineState extends State<certificateguideline> {
   bool arrowSelect5;
   bool arrowSelect6;
   bool arrowSelect7;
+  bool arrowSelect8;
+  void refresh2(dynamic childValue) {
+    setState(() {
+      arrowSelect2 = childValue;
+    });
+  }
+  void refresh3(dynamic childValue) {
+    setState(() {
+      _arrowSelect3 = childValue;
+    });
+  }
+  void refresh4(dynamic childValue) {
+    setState(() {
+      arrowSelect4 = childValue;
+    });
+  }
+  void refresh5(dynamic childValue) {
+    setState(() {
+      arrowSelect5 = childValue;
+    });
+  }
+  void refresh6(dynamic childValue) {
+    setState(() {
+      arrowSelect6 = childValue;
+    });
+  }
+  void refresh7(dynamic childValue) {
+    setState(() {
+      arrowSelect7 = childValue;
+    });
+  }
+  void refresh8(dynamic childValue) {
+    setState(() {
+      arrowSelect8 = childValue;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -73,19 +109,20 @@ class certificateguidelineState extends State<certificateguideline> {
                   //C프로그래밍 - 멀티미디어프로그래밍 화살표
                   padding: EdgeInsets.fromLTRB(277, 92, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow1.svg',
+                    'asset/arrowSVG/arrow1.svg',color: arrowSelect2 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 Container(
                   //C프로그래밍 - 고급 C프로그래밍 화살표
                   padding: EdgeInsets.fromLTRB(270, 92, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow2.svg',
+                    'asset/arrowSVG/arrow2.svg',color: arrowSelect2 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(118, 79, 0, 0),
-                  child: courseBox("C프로그래밍 실습"),
+                  child:
+                  courseBoxes(labelText: "C프로그래밍 실습",xSize: 139,notifyParent: refresh2,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(36, 148, 0, 0),
@@ -108,24 +145,25 @@ class certificateguidelineState extends State<certificateguideline> {
                   //고급 C프로그래밍 - 문제 해결 및 실습: C++ 화살표
                   padding: EdgeInsets.fromLTRB(279, 197, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow4.svg',
+                    'asset/arrowSVG/arrow4.svg',color: arrowSelect4 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 Container(
                   //자료구조 및 실습 - 알고리즘 및 실습 화살표
                   padding: EdgeInsets.fromLTRB(261, 294, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow5.svg',
+                    'asset/arrowSVG/arrow5.svg',color: arrowSelect5 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 //색 업데이트 안됨 => 2020 1 6 해결 불가능, state변화 감지가 안됨
                 Container(
                   padding: EdgeInsets.fromLTRB(136, 144, 0, 0),
-                  child: courseBoxes(labelText: "공업수학",xSize: 103,selected: _arrowSelect3=false,),
+                  child: courseBoxes(labelText: "공업수학",xSize: 103,notifyParent: refresh3,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(105, 179, 0, 0),
-                  child: courseBox("고급C프로그래밍실습"),
+                  child:
+                  courseBoxes(labelText: "고급C프로그래밍실습",xSize: 165,notifyParent: refresh4,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(36, 248, 0, 0),
@@ -143,7 +181,8 @@ class certificateguidelineState extends State<certificateguideline> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(120, 279, 0, 0),
-                  child: courseBox("자료구조 및 실습"),
+                  child:
+                  courseBoxes(labelText: "자료구조 및 실습",xSize: 136,notifyParent: refresh5,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(102, 314, 0, 0),
@@ -163,7 +202,7 @@ class certificateguidelineState extends State<certificateguideline> {
                   //통계학개론 - 데이터분석 화살표
                   padding: EdgeInsets.fromLTRB(246, 431, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow6.svg',
+                    'asset/arrowSVG/arrow6.svg',color: arrowSelect6 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 Container(
@@ -172,7 +211,8 @@ class certificateguidelineState extends State<certificateguideline> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(136, 414, 0, 0),
-                  child: courseBox("통계학개론"),
+                  child:
+                  courseBoxes(labelText: "통계학개론",xSize: 104,notifyParent: refresh6,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(36, 483, 0, 0),
@@ -188,7 +228,7 @@ class certificateguidelineState extends State<certificateguideline> {
                   //고급실시간그래픽스 - 컴퓨터애니메이션 화살표
                   padding: EdgeInsets.fromLTRB(266, 527, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow7.svg',
+                    'asset/arrowSVG/arrow7.svg',color: arrowSelect7 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 Container(
@@ -197,7 +237,8 @@ class certificateguidelineState extends State<certificateguideline> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(110, 514, 0, 0),
-                  child: courseBox("고급실시간그래픽스"),
+                  child:
+                  courseBoxes(labelText: "고급실시간그래픽스",xSize: 156,notifyParent: refresh7,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(36, 583, 0, 0),
@@ -213,7 +254,7 @@ class certificateguidelineState extends State<certificateguideline> {
                   //소프트웨어특강1 - 소프트웨어특강2 화살표
                   padding: EdgeInsets.fromLTRB(266, 627, 0, 0),
                   child: SvgPicture.asset(
-                    'asset/arrowSVG/arrow8.svg',
+                    'asset/arrowSVG/arrow8.svg',color: arrowSelect8 == true ? Color(0xff6d69fb):Color(0xffefefef)
                   ),
                 ),
                 Container(
@@ -222,7 +263,8 @@ class certificateguidelineState extends State<certificateguideline> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(117, 614, 0, 0),
-                  child: courseBox("소프트웨어특강1"),
+                  child:
+                  courseBoxes(labelText: "소프트웨어특강1",xSize: 141,notifyParent: refresh8,),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(36, 683, 0, 0),
@@ -236,7 +278,7 @@ class certificateguidelineState extends State<certificateguideline> {
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(117, 679, 0, 0),
-                  child: courseBox("소프트웨어특강1"),
+                  child: courseBox("소프트웨어특강2"),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(36, 765, 0, 0),
@@ -249,7 +291,7 @@ class certificateguidelineState extends State<certificateguideline> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(80, 768, 0, 0),
+                  padding: EdgeInsets.fromLTRB(80, 764, 0, 0),
                   child: SvgPicture.asset(
                     'asset/questionmark.svg',
                   ),
@@ -415,10 +457,9 @@ class certificateguidelineState extends State<certificateguideline> {
 
 class courseBoxes extends StatefulWidget {
   String labelText;
-  bool selected;
   double xSize;
-
-  courseBoxes({Key key, @required this.labelText, this.xSize,this.selected})
+  Function(dynamic) notifyParent;
+  courseBoxes({Key key, @required this.labelText, this.xSize,this.notifyParent})
       : super(key: key);
 
   @override
@@ -426,6 +467,7 @@ class courseBoxes extends StatefulWidget {
 }
 
 class courseBoxState extends State<courseBoxes> {
+  bool selected = false;
   Widget build(BuildContext context) {
     return Container(
       child: Center(
@@ -448,17 +490,18 @@ class courseBoxState extends State<courseBoxes> {
               Radius.circular(4.0),
             ),
             side: BorderSide(
-              color: widget.selected == true ? Color(0xff6d69fb) : Color(0xfff3f2ff)
+              color:selected == true ? Color(0xff6d69fb) : Color(0xfff3f2ff)
             )
           ),
-          selected: widget.selected,
+          selected: selected,
           labelStyle: TextStyle(color: Colors.white),
           backgroundColor: Color(0xfff3f2ff),
           selectedColor: Color(0xffbeb9ff),
           onSelected: (selected) {
             setState(
               () {
-                this.widget.selected = !this.widget.selected;
+                this.selected = !this.selected;
+                widget.notifyParent(this.selected);
               },
             );
           },
