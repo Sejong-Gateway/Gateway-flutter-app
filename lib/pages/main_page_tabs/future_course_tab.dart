@@ -105,7 +105,7 @@ class futureCoursetab extends StatelessWidget {
                               children: [
                                 Container(
                                   padding:
-                                  EdgeInsets.fromLTRB(34, 12, 34, 12),
+                                  EdgeInsets.fromLTRB(24, 12, 24, 12),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(4),
@@ -131,7 +131,7 @@ class futureCoursetab extends StatelessWidget {
                                             height: 12,
                                           ),
                                           SizedBox(
-                                            width: 150,
+                                            width: 120,
                                             child: Text(
                                               subject.name,
                                               style: TextStyle(

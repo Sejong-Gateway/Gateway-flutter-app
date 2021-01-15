@@ -150,17 +150,13 @@ class CurrentCourseSelectState1 extends State<CurrentCourseSelect1> {
   Widget _listSpread(CurrentSelectViewModel model, String type) {
     return Wrap(
       children: [
-        ...model.subjectList.map(
+        ...model.subjectList.where((SubjectModel subject) => subject.type == type).map(
           (SubjectModel subject) {
-            if (subject.type == type) {
-              return SubjectBox(
-                name: subject.name,
-                onClick: () => model.onSelectSubject(subject.uuid),
-                select: model.selectList.indexWhere((element) => element == subject.uuid) != -1,
-              );
-            } else {
-              return Container();
-            }
+            return SubjectBox(
+              name: subject.name,
+              onClick: () => model.onSelectSubject(subject.uuid),
+              select: model.selectList.indexWhere((element) => element == subject.uuid) != -1,
+            );
           },
         )
       ],

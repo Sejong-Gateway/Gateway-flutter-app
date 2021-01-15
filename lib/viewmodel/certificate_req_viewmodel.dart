@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:login_page/core/base_viewmodel.dart';
 import 'package:login_page/core/di_container.dart';
+import 'package:login_page/service/api/auth/auth_api.dart';
+import 'package:login_page/service/api/common/token.dart';
 import 'package:login_page/service/flow/register_flow.dart';
 
 class CertificateReqViewModel extends BaseViewModel {
   RegisterFlow _registerFlow = diContainer<RegisterFlow>();
+  AuthApi _authApiService = diContainer<AuthApi>();
+  TokenService _tokenService = diContainer<TokenService>();
 
   TextEditingController westernBook = TextEditingController();
   TextEditingController easternBook = TextEditingController();
@@ -17,7 +21,7 @@ class CertificateReqViewModel extends BaseViewModel {
   TextEditingController opic = TextEditingController();
   TextEditingController toeicSpeaking = TextEditingController();
 
-  void onClickNext() {
+  void onClickNext() async{
     try{
       _registerFlow.setScore(
         westernBook: westernBook.text.isNotEmpty ? westernBook.text : "0",
@@ -31,10 +35,11 @@ class CertificateReqViewModel extends BaseViewModel {
         opic: westernBook.text.isNotEmpty ? opic.text: "0",
         toeicSpeaking: westernBook.text.isNotEmpty ? toeicSpeaking.text: "0",
       );
-      _registerFlow.registerUser();
+      await _registerFlow.registerUser();
+      String accessToken = await _authApiService.login(_registerFlow.studentId, _registerFlow.user_pw);
+      _tokenService.setAccessToken(accessToken);
     }catch(e){
       print(e);
     }
-
   }
 }

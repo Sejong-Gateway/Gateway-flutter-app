@@ -70,7 +70,7 @@ class CurrentCourseTabTrue extends StatelessWidget {
                                 children: [
                                   Container(
                                     padding:
-                                        EdgeInsets.fromLTRB(34, 12, 34, 12),
+                                        EdgeInsets.fromLTRB(24, 12, 24, 12),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(4),
