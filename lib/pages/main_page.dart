@@ -83,21 +83,13 @@ class _MainPage extends State<MainPage> {
                               ],
                             ),
                           ),
-                          Row(
-                            children: [
-                              RaisedButton(
-                                color: Colors.white,
-                                elevation: 0,
-                                child: Container(
-                                  margin: EdgeInsets.only(left: 30),
-                                  child:
-                                  SvgPicture.asset('asset/hamburgerMenu.svg'),
-                                ),
-                                onPressed: () {
-                                  hamburerModal.mainBottomSheet(context);
-                                },
-                              ),
-                            ],
+                          GestureDetector(
+                            onTap: () => hamburerModal.mainBottomSheet(context),
+                            child: Container(
+                              margin: EdgeInsets.only(right: 15, left: 10),
+                              child:
+                              SvgPicture.asset('asset/hamburgerMenu.svg'),
+                            ),
                           ),
                         ],
                       ),

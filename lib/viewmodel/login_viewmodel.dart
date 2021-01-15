@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:login_page/core/base_viewmodel.dart';
 import 'package:login_page/core/di_container.dart';
 import 'package:login_page/pages/main_page.dart';
-import 'package:login_page/pages/signup_page.dart';
+import 'package:login_page/pages/register_page.dart';
 import 'package:login_page/service/api/auth/auth_api.dart';
 import 'package:login_page/service/api/common/token.dart';
 import 'package:login_page/service/flow/register_flow.dart';
@@ -25,7 +25,7 @@ class LoginViewModel extends BaseViewModel {
     else{
       diContainer.registerLazySingleton(() => RegisterFlow());
     }
-    Navigator.of(context).push(SignupPage.route());
+    Navigator.of(context).push(RegisterPage.route());
   }
 
   void onClickLogin(BuildContext context) async{

@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as Material;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/components/Button.dart';
 import 'package:login_page/components/modal_view.dart' as Gateway;
 import 'package:login_page/components/modals/signup_department.dart';
 import 'package:login_page/components/modals/signup_semester.dart';
 import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
-import 'package:login_page/pages/main_page.dart';
+import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/register_viewmodel.dart';
+import 'package:login_page/components/TextField.dart' as Gateway;
+import 'package:login_page/components/Checkbox.dart' as Gateway;
 
-class SignupPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => SignupPage());
+    return MaterialPageRoute<void>(builder: (_) => RegisterPage());
   }
 
   @override
@@ -186,7 +188,7 @@ class _Certificatechecker extends State<Certificatechecker> {
 }
 
 //SignupPage 확장
-extension on SignupPage {
+extension on RegisterPage {
   Widget _body(BuildContext context, RegisterViewModel model) {
     return SafeArea(
       child: Container(
@@ -199,12 +201,22 @@ extension on SignupPage {
               flex: 6,
               child: Container(),
             ),
-            this._textField("학번", "학번을 입력해주세요", false, model.idController),
+            Gateway.TextField(
+              hintText: '학번을 입력해주세요',
+              labelText: '학번',
+              activation: false,
+              controller: model.idController,
+            ),
             Expanded(
               flex: 45,
               child: Container(),
             ),
-            this._textField("비밀번호", "비밀번호를 입력해주세요", true, model.pwController),
+            Gateway.TextField(
+              hintText: '비밀번호를 입력해주세요',
+              labelText: '비밀번호',
+              activation: true,
+              controller: model.pwController,
+            ),
             Expanded(
               flex: 45,
               child: Container(),
@@ -276,7 +288,7 @@ extension on SignupPage {
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.fromLTRB(19, 10, 19, 10),
+                padding: EdgeInsets.fromLTRB(19, 11, 19, 10),
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
@@ -285,9 +297,11 @@ extension on SignupPage {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
-                  model.major ??'전공을 선택해주세요',
+                  model.major ?? '전공을 선택해주세요',
                   style: TextStyle(
-                    color: model.major != null ? Colors.black : Color(0xffdbdbdb),
+                    fontSize: 12,
+                    color:
+                        model.major != null ? Colors.black : Color(0xffdbdbdb),
                   ),
                 ),
               ),
@@ -458,18 +472,21 @@ extension on SignupPage {
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.fromLTRB(19, 10, 19, 10),
+                padding: EdgeInsets.fromLTRB(19, 11, 19, 10),
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: Color(0xffcccccc),
+                    color: GatewayColor.inactive,
                   ),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
-                  model.semester ??'이수학기를 선택해주세요',
+                  model.semester ?? '이수학기를 선택해주세요',
                   style: TextStyle(
-                    color: model.semester != null ? Colors.black : Color(0xffdbdbdb),
+                    fontSize: 12,
+                    color: model.semester != null
+                        ? Colors.black
+                        : GatewayColor.hintText,
                   ),
                 ),
               ),
@@ -478,73 +495,25 @@ extension on SignupPage {
               flex: 60,
               child: Container(),
             ),
-            this._verifyButton(true, context, model),
+            Button(
+              onPressed: () {
+                if (model.isButtonActive()) {
+                  model.onClickRegister();
+                  Navigator.of(context).push(CurrentCourseSelectPage1.route());
+                }
+              },
+              fontSize: 16,
+              text: '회원가입',
+              borderRadius: BorderRadius.circular(4),
+              height: 48,
+              disabled: !model.isButtonActive(),
+            ),
             Expanded(
               flex: 99,
               child: Container(),
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  //비밀번호 입력 받을 때 위젯, obscureText사용
-  Widget _textField(String labelText, String hintText, bool activation,
-      TextEditingController controller) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            hintText: hintText,
-            suffixIconConstraints: BoxConstraints(
-              maxHeight: 8,
-              minWidth: 12,
-            ),
-            hintStyle: TextStyle(
-                color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w300),
-            contentPadding: EdgeInsets.only(top: 13),
-          ),
-          obscureText: activation,
-        )
-      ],
-    );
-  }
-
-  Widget _verifyButton(
-      bool inputChecks, BuildContext context, RegisterViewModel model) {
-    return Material.ButtonTheme(
-      height: 48,
-      minWidth: 400,
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-          side: BorderSide(
-            color: Color(0xff6c63ff),
-          ),
-        ),
-        onPressed: () {
-          model.onClickRegister();
-          Navigator.of(context).push(currentCourseSelectPage1.route());
-        },
-        child: Text(
-          "회원가입",
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: inputChecks == true ? Colors.white : Colors.grey),
-        ),
-        color: inputChecks == true ? Color(0xff6c63ff) : Colors.white70,
-        elevation: 0,
       ),
     );
   }

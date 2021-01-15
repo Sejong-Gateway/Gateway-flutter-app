@@ -11,12 +11,10 @@ import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
 import 'package:login_page/viewmodel/splash_viewmodel.dart';
 
-//117번째 줄 PageController.page cannot be accessed before a PageView is built with it. 오류 발생
-//future widget으로 만들라는데.. 그래도 되는건가??
-class currentCourseSelectPage1 extends StatelessWidget {
+class CurrentCourseSelectPage1 extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(
-      builder: (_) => currentCourseSelectPage1(),
+      builder: (_) => CurrentCourseSelectPage1(),
     );
   }
 
@@ -150,17 +148,13 @@ class CurrentCourseSelectState1 extends State<CurrentCourseSelect1> {
   Widget _listSpread(CurrentSelectViewModel model, String type) {
     return Wrap(
       children: [
-        ...model.subjectList.map(
+        ...model.subjectList.where((SubjectModel subject) => subject.type == type).map(
           (SubjectModel subject) {
-            if (subject.type == type) {
-              return SubjectBox(
-                name: subject.name,
-                onClick: () => model.onSelectSubject(subject.uuid),
-                select: model.selectList.indexWhere((element) => element == subject.uuid) != -1,
-              );
-            } else {
-              return Container();
-            }
+            return SubjectBox(
+              name: subject.name,
+              onClick: () => model.onSelectSubject(subject.uuid),
+              select: model.selectList.indexWhere((element) => element == subject.uuid) != -1,
+            );
           },
         )
       ],

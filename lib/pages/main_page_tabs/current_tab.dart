@@ -60,7 +60,7 @@ class CurrentStatusTab extends StatelessWidget {
                       height: 12,
                     ),
                     ProgressBar(
-                      labelText: "학문기초교양",
+                      labelText: "학문기교",
                       currentCredits: model.getSubjectCredit('교양선택1'),
                       totalCredits: 3,
                       noLimit: false,

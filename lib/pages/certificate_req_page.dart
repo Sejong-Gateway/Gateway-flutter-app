@@ -157,7 +157,7 @@ extension on CertificateReqInput {
                       '취득점수/커트라인',
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 9,
+                          fontSize: 11,
                           color: Color(0xff888888)),
                     ),
                   ),
@@ -174,7 +174,8 @@ extension on CertificateReqInput {
     );
   }
 
-  Widget _textField(String courseText, String countText, TextEditingController controller) {
+  Widget _textField(
+      String courseText, String countText, TextEditingController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -190,9 +191,10 @@ extension on CertificateReqInput {
             Container(
               width: 30,
               child: TextField(
+                textAlign: TextAlign.end,
                 controller: controller,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(top: 0, left: 15),
+                  contentPadding: EdgeInsets.only(top: 0, right: 3),
                   isDense: true,
                   hintText: "0",
                   labelStyle: TextStyle(fontSize: 19),
@@ -237,29 +239,30 @@ extension on CertificateReqInput {
                 ),
               ),
             ),
-            Container(
-              width: 220,
-              height: 33,
-              decoration: BoxDecoration(
-                border: Border(
-                  right: BorderSide(color: Color(0xffbebbfd), width: 2),
-                  bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+            Expanded(
+              child: Container(
+                height: 33,
+                decoration: BoxDecoration(
+                  border: Border(
+                    right: BorderSide(color: Color(0xffbebbfd), width: 2),
+                    bottom: BorderSide(color: Color(0xffbebbfd), width: 2),
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Text(
-                  '취득점수',
-                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Text(
+                    '취득점수',
+                    style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
           ],
         ),
-        this._tableScoreInput("TOEIC",700, model.toeic),
-        this._tableScoreInput("IBT",700, model.ibt),
-        this._tableScoreInput("TEPS",700, model.teps),
-        this._tableScoreInput("OPIc",700, model.opic),
-        this._tableScoreInput("TOEIC Speaking",700, model.toeicSpeaking),
+        this._tableScoreInput("TOEIC", 700, model.toeic),
+        this._tableScoreInput("IBT", 700, model.ibt),
+        this._tableScoreInput("TEPS", 700, model.teps),
+        this._tableScoreInput("OPIc", 700, model.opic),
+        this._tableScoreInput("TOEIC Speaking", 700, model.toeicSpeaking),
         SizedBox(
           height: 31,
         ),
@@ -278,7 +281,7 @@ extension on CertificateReqInput {
                 ),
                 onPressed: () {
                   model.onClickNext();
-                  Navigator.of(context).push(MainPage.route());
+                  // Navigator.of(context).push(MainPage.route());
                 },
                 color: Color(0xff6c63ff),
                 textColor: Colors.white,
@@ -288,13 +291,14 @@ extension on CertificateReqInput {
           ],
         ),
         SizedBox(
-          height: 200,
+          height: 20,
         ),
       ],
     );
   }
 
-  Widget _tableScoreInput(String courseLabel,int courseScore, TextEditingController controller) {
+  Widget _tableScoreInput(
+      String courseLabel, int courseScore, TextEditingController controller) {
     return Row(
       children: [
         Container(
@@ -310,12 +314,12 @@ extension on CertificateReqInput {
             padding: EdgeInsets.fromLTRB(17, 11, 73, 9),
             child: Text(
               courseLabel,
-              style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
             ),
           ),
         ),
-        Container(
-          width: 220,
+        Expanded(
+            child: Container(
           height: 33,
           decoration: BoxDecoration(
             border: Border(
@@ -325,29 +329,26 @@ extension on CertificateReqInput {
             color: Color(0xffe5e3ff),
           ),
           child: Container(
-            padding: EdgeInsets.only(right:65),
+            padding: EdgeInsets.only(right: 65),
             child: TextFormField(
               controller: controller,
-              //검증해서 점수 적는거 필요
-              style: TextStyle(fontSize: 8, fontWeight: FontWeight.w300 ),
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
               textAlign: TextAlign.end,
               cursorColor: Colors.black,
               decoration: new InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 0, left: 0, bottom: 20,right:0),
-               //prefixStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
+                //prefixStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
                 hintText: "점수를 입력해주세요",
-                hintStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
-                suffixText : '/$courseScore',
-                suffixStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.w300),
+                hintStyle: TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
+                suffixText: '/$courseScore',
+                suffixStyle:
+                    TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
               ),
             ),
           ),
-        ),
+        )),
       ],
     );
   }
 }
-
-

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/pages/certificate_guideline.dart';
 import 'package:login_page/pages/profiletag_page.dart';
-import 'package:login_page/pages/signup_page.dart';
+import 'package:login_page/pages/register_page.dart';
 
 class MainpageHamburger {
   String dropValue;

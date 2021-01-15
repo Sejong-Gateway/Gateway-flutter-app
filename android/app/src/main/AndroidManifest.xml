@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.protomain">
+    package="jerry.app.gateway">
    <application
-        android:label="protomain"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Gateway"
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

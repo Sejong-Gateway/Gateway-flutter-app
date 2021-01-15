@@ -1,4 +1,4 @@
-package com.example.protomain
+package jerry.app.gateway
 
 import io.flutter.embedding.android.FlutterActivity
 
