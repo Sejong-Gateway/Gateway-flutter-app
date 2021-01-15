@@ -18,6 +18,7 @@ class CurrentSelectViewModel extends BaseViewModel {
 
   void initState() async{
     try{
+      print(_registerFlow.major);
       subjectList = await _subjectApiService.getSubject(_registerFlow.major);
       setState(ViewState.IDLE);
     } catch(e){
@@ -36,11 +37,12 @@ class CurrentSelectViewModel extends BaseViewModel {
   }
 
   void onClickNext(){
-    _registerFlow.setCurrentSubject(selectList);
+    _registerFlow.setCompleteSubject(selectList);
+    print(_registerFlow.completeSubjects);
   }
 
   void onClickFutureNext(){
-    _registerFlow.setFutureSubject(selectList);
+    _registerFlow.setCurrentSubject(selectList);
   }
 
   List<String> get getCurrentSubjectList => _registerFlow.completeSubjects;

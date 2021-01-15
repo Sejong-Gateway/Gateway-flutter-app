@@ -18,7 +18,6 @@ class RegisterViewModel extends BaseViewModel {
       semester: semester,
       abeek: true,
     );
-
   }
 
   void onSelectMajor(String major) {
@@ -29,5 +28,9 @@ class RegisterViewModel extends BaseViewModel {
   void onSelectSemester(String semester) {
     this.semester = semester;
     setState(ViewState.IDLE);
+  }
+
+  bool isButtonActive(){
+    return idController.text.isNotEmpty && pwController.text.isNotEmpty && major != null && semester != null;
   }
 }

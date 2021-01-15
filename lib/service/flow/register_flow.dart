@@ -54,14 +54,14 @@ class RegisterFlow extends ApiService with AuthApiService {
     this.abeek = abeek;
   }
 
-  void setCurrentSubject(List<String> list) {
+  void setCompleteSubject(List<String> list) {
     completeSubjects = [
       ...completeSubjects,
       ...list,
     ];
   }
 
-  void setFutureSubject(List<String> list) {
+  void setCurrentSubject(List<String> list) {
     currentSubjects = [
       ...currentSubjects,
       ...list,

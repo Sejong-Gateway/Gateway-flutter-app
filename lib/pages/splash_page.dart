@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/core/base_screen.dart';
+import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/splash_viewmodel.dart';
 
 class SplashPage extends StatelessWidget {
@@ -48,8 +49,8 @@ extension on SplashPage {
                 width: 78.5,
                 height: 18.3,
                 child: SvgPicture.asset(
-                  'asset/GateWayTitle.svg',
-                  color: Color(0xff6c63ff),
+                  'asset/icons/app-logo-title.svg',
+                  color: GatewayColor.primary,
                 ),
               ),
             ],
