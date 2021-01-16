@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/components/modal_view.dart';
+import 'package:login_page/pages/certificate_guideline.dart';
 import 'package:login_page/pages/main_page_tabs/current_course_tabTrue.dart';
 import 'package:login_page/pages/main_page_tabs/current_tab.dart';
 import 'package:login_page/pages/main_page_tabs/future_course_tab.dart';
+import 'package:login_page/pages/profiletag_page.dart';
 
 class MainPage extends StatelessWidget{
 
@@ -109,8 +111,14 @@ extension on MainPage{
           horizontal: 36, vertical: 13),
       child: Column(
         children: [
-          this._modelItem(context, '내 정보'),
-          this._modelItem(context, '공학인증'),
+          GestureDetector(
+            onTap: () => Navigator.of(context).push(ProfileTagPage.route()),
+            child: this._modelItem(context, '내 정보'),
+          ),
+          GestureDetector(
+            onTap: () => Navigator.of(context).push(Certificateguideline.route()),
+            child: this._modelItem(context, '공학인증'),
+          ),
         ],
       ),
     );
@@ -120,8 +128,6 @@ extension on MainPage{
     padding:
     EdgeInsets.symmetric(vertical: 15),
     child: Row(
-      mainAxisAlignment:
-      MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
@@ -129,6 +135,7 @@ extension on MainPage{
             fontSize: 16,
           ),
         ),
+        Expanded(child: SizedBox()),
         SvgPicture.asset(
           'asset/icons/ic_right_arrow.svg',
         ),

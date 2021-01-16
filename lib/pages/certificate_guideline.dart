@@ -4,19 +4,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 //arrow highlight가 안됨 => 과목 토글은 가능
-class certificateguideline extends StatefulWidget {
+class Certificateguideline extends StatefulWidget {
 
   static Route route(){
     return MaterialPageRoute<void>(
-      builder: (_)=>certificateguideline(),
+      builder: (_)=>Certificateguideline(),
     );
   }
 
   @override
-  certificateguidelineState createState() => certificateguidelineState();
+  _CertificateguidelineState createState() => _CertificateguidelineState();
 }
 
-class certificateguidelineState extends State<certificateguideline> {
+class _CertificateguidelineState extends State<Certificateguideline> {
   bool arrowSelect1;
   bool arrowSelect2;
   bool _arrowSelect3;
@@ -64,6 +64,7 @@ class certificateguidelineState extends State<certificateguideline> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
