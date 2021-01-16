@@ -29,7 +29,7 @@ Gateway 는 세종대학교 학생을 위한 자가 졸업 진단 어플리케�
 
 ##  앱 다운로드 링크
 
-Andorid : https://play.google.com/store/apps/details?id=jerry.app.gateway
+[Andorid](https://play.google.com/store/apps/details?id=jerry.app.gateway)
 
 Ios : 준비중입니다!
 
