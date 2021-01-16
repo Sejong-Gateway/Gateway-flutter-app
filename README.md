@@ -6,7 +6,7 @@
 ![graphic](https://user-images.githubusercontent.com/22852287/104813891-464c5380-584f-11eb-97c7-0239aecd6d51.png)
 Gateway 는 세종대학교 학생을 위한 자가 졸업 진단 어플리케이션입니다!
 
-![Flutter](https://img.shields.io/badge/flutter-1.23v-blue?logo=flutter)
+![Flutter](https://img.shields.io/badge/flutter-v1.23-blue?logo=flutter)
 ![react](https://img.shields.io/badge/react-17.0.1-9cf?logo=react)
 ![NodeJS](https://img.shields.io/badge/node.js-v14.13.1-green?logo=node.js)
 
