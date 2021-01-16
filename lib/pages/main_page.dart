@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/components/modal_view.dart';
 import 'package:login_page/pages/certificate_guideline.dart';
-import 'package:login_page/pages/main_page_tabs/current_course_tabTrue.dart';
+import 'package:login_page/pages/main_page_tabs/current_course_tab.dart';
 import 'package:login_page/pages/main_page_tabs/current_tab.dart';
 import 'package:login_page/pages/main_page_tabs/future_course_tab.dart';
-import 'package:login_page/pages/profiletag_page.dart';
+import 'package:login_page/pages/profile_page.dart';
 
 class MainPage extends StatelessWidget{
 
@@ -93,8 +93,8 @@ class MainPage extends StatelessWidget{
             child: TabBarView(
               children: [
                 CurrentStatusTab(),
-                CurrentCourseTabTrue(), //과목이 정상적으로 들어왔으면 CurrentCourseTabTrue()
-                futureCoursetab(),
+                CurrentCourseTab(),
+                FutureCoursetab(),
               ],
             ),
           ),
@@ -112,7 +112,7 @@ extension on MainPage{
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => Navigator.of(context).push(ProfileTagPage.route()),
+            onTap: () => Navigator.of(context).push(ProfilePage.route()),
             child: this._modelItem(context, '내 정보'),
           ),
           GestureDetector(

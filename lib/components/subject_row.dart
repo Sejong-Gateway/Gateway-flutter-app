@@ -3,7 +3,6 @@ import 'package:login_page/models/subject_model.dart';
 import 'package:login_page/utils/gateway_color.dart';
 
 class SubjectRow extends StatelessWidget {
-
   final SubjectModel subject;
 
   const SubjectRow({Key key, this.subject}) : super(key: key);
@@ -12,8 +11,7 @@ class SubjectRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(36, 0, 36, 12),
-      padding:
-      EdgeInsets.fromLTRB(24, 9, 24, 9),
+      padding: EdgeInsets.fromLTRB(24, 9, 24, 9),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(4),
@@ -21,23 +19,19 @@ class SubjectRow extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.16),
             blurRadius: 6,
-            offset: Offset(0,
-                2), // changes position of shadow
+            offset: Offset(0, 2), // changes position of shadow
           ),
         ],
       ),
       child: Row(
-        crossAxisAlignment:
-        CrossAxisAlignment.center,
-        mainAxisAlignment:
-        MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment:
-            CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: 150,
+              Container(
+                constraints: BoxConstraints(maxWidth: 150),
                 child: Text(
                   subject.name ?? "",
                   style: TextStyle(
@@ -65,11 +59,9 @@ class SubjectRow extends StatelessWidget {
           ),
           Row(
             children: [
-              this._courseTag(subject.type),
-              SizedBox(
-                width: 4,
-              ),
-              this._semesterTag(subject.semester),
+              this._tag(subject.type, GatewayColor.typeColor),
+              SizedBox(width: 4),
+              this._tag(subject.semester, GatewayColor.semesterColor),
             ],
           )
         ],
@@ -78,45 +70,25 @@ class SubjectRow extends StatelessWidget {
   }
 }
 
-extension on SubjectRow{
-  Widget _courseTag(String labelText) {
+extension on SubjectRow {
+  Widget _tag(String labelText, Color color) {
     return Container(
-      padding: EdgeInsets.only(left: 5, right: 5),
-      height: 18,
+      height: 20,
+      padding: EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: Color(0xffffcfd4),
-        ),
-        color: Color(0xffffcfd4),
+        color: color,
       ),
-      child: Center(
+      child: Align(
+        alignment: Alignment.center,
         child: Text(
           labelText,
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+          ),
         ),
-      ),
-    );
-  }
-
-  Widget _semesterTag(String labelText) {
-    return Container(
-      padding: EdgeInsets.only(left: 5, right: 5, bottom: 2),
-      // width: 30,
-      height: 18,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: Color(0xffcfe5f9),
-        ),
-        color: Color(0xffcfe5f9),
-      ),
-      child: Center(
-        child: Text(
-          labelText,
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
-        ),
-      ),
+      )
     );
   }
 }

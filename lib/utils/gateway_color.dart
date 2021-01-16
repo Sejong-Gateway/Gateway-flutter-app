@@ -10,4 +10,6 @@ class _GatewayColor{
   final Color inactive = Color(0xffcccccc);
   final Color subText = Color(0xff888888);
   final Color white = Color(0xffffffff);
+  final Color typeColor = Color(0xffffcfd4);
+  final Color semesterColor = Color(0xffcfe5f9);
 }

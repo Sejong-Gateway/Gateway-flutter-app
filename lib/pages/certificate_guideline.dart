@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
+import 'package:login_page/utils/gateway_color.dart';
 
 
 //arrow highlight가 안됨 => 과목 토글은 가능
@@ -65,22 +67,11 @@ class _CertificateguidelineState extends State<Certificateguideline> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-            color: Color(0xff6d69fb),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: Text(
-            "공학인증",
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-          ),
-          toolbarHeight: 44,
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: Gateway.AppBar(
+          preferredSize: Size.fromHeight(56),
+          backgroundColor: GatewayColor.white,
+          leftButtonExist: true,
+          title: '공학인증',
         ),
         body: ListView(
           children: [

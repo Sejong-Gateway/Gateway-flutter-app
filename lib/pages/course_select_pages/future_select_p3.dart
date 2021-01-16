@@ -6,7 +6,9 @@ import 'package:login_page/components/subject_box.dart';
 import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/models/subject_model.dart';
 import 'package:login_page/pages/certificate_req_page.dart';
+import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
 
 class FutureCourseSelectPage3 extends StatelessWidget {
   static Route route() {
@@ -34,17 +36,10 @@ class FutureCourseSelectState3 extends State<FutureCourseSelect3> {
       model.initState();
     }, builder: (context, model, child) {
       return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-            color: Color(0xff6d69fb),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          toolbarHeight: 44,
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: Gateway.AppBar(
+          preferredSize: Size.fromHeight(56),
+          backgroundColor: GatewayColor.white,
+          leftButtonExist: true,
         ),
         body: Container(
           color: Colors.white,

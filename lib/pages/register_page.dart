@@ -7,6 +7,7 @@ import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
 import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/register_viewmodel.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
 import 'package:login_page/components/TextField.dart' as Gateway;
 import 'package:login_page/components/Checkbox.dart' as Gateway;
 
@@ -22,17 +23,10 @@ class RegisterPage extends StatelessWidget {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-              color: Color(0xff6d69fb),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            toolbarHeight: 44,
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: Gateway.AppBar(
+            preferredSize: Size.fromHeight(56),
+            backgroundColor: GatewayColor.white,
+            leftButtonExist: true,
           ),
           body: this._body(context, model),
         );
