@@ -115,6 +115,7 @@ class FutureCourseSelectState2 extends State<FutureCourseSelect2> {
               name: subject.name,
               onClick: () => model.onSelectSubject(subject.uuid),
               select: model.selectList.indexWhere((element) => element == subject.uuid) != -1,
+                disabled: model.getCurrentSubjectList.indexWhere((element) => element == subject.uuid) != -1
             );
           },
         )

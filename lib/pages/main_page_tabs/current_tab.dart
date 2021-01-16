@@ -7,8 +7,6 @@ import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/main_viewmodel.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-const GatewayColor = Color(0xff6c63ff);
-
 class CurrentStatusTab extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(
@@ -276,7 +274,7 @@ class CurrentStatusTab extends StatelessWidget {
                           currentCredit.toString(),
                           style: TextStyle(
                             fontSize: 30,
-                            color: GatewayColor,
+                            color: GatewayColor.primary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -715,7 +713,7 @@ class ProgressBar extends StatelessWidget {
               width: 230,
               lineHeight: 10,
               percent: currentCredits / totalCredits,
-              progressColor: GatewayColor,
+              progressColor: GatewayColor.primary,
             ),
             SizedBox(height: 5),
             Row(
@@ -726,7 +724,7 @@ class ProgressBar extends StatelessWidget {
                   currentCredits.toString(),
                   style: TextStyle(
                       fontSize: 12,
-                      color: GatewayColor,
+                      color: GatewayColor.primary,
                       fontWeight: FontWeight.w500),
                 ),
                 Text(

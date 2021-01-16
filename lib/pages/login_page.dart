@@ -55,7 +55,7 @@ extension on LoginPage {
             Gateway.TextField(
               labelText: '학번',
               hintText: '학번을 입력해주세요',
-              activation: true,
+              activation: false,
               controller: model.studentId,
             ),
             Expanded(
@@ -78,6 +78,9 @@ extension on LoginPage {
               child: SizedBox(),
             ),
             Button(
+              onPressed: (){
+                model.onClickLogin(context);
+              },
               text: '로그인',
               height: 48,
               borderRadius: BorderRadius.circular(4),

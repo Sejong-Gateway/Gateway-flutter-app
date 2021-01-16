@@ -4,15 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/components/Button.dart';
 import 'package:login_page/components/subject_box.dart';
 import 'package:login_page/core/base_screen.dart';
-import 'package:login_page/models/Course_model.dart';
 import 'package:login_page/models/subject_model.dart';
 import 'package:login_page/pages/certificate_req_page.dart';
-import 'package:login_page/pages/course_select_pages/current_select_p2.dart';
-import 'package:login_page/pages/main_page.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
 
-//117번째 줄 PageController.page cannot be accessed before a PageView is built with it. 오류 발생
-//future widget으로 만들라는데.. 그래도 되는건가??
 class FutureCourseSelectPage3 extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(
@@ -119,6 +114,7 @@ class FutureCourseSelectState3 extends State<FutureCourseSelect3> {
               name: subject.name,
               onClick: () => model.onSelectSubject(subject.uuid),
               select: model.selectList.indexWhere((element) => element == subject.uuid) != -1,
+                disabled: model.getCurrentSubjectList.indexWhere((element) => element == subject.uuid) != -1
             );
           },
         )

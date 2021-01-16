@@ -281,7 +281,7 @@ extension on CertificateReqInput {
                 ),
                 onPressed: () {
                   model.onClickNext();
-                  // Navigator.of(context).push(MainPage.route());
+                  Navigator.of(context).push(MainPage.route());
                 },
                 color: Color(0xff6c63ff),
                 textColor: Colors.white,
