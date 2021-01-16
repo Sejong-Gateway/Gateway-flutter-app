@@ -9,7 +9,7 @@ import 'package:login_page/models/subject_model.dart';
 import 'package:login_page/pages/course_select_pages/current_select_p2.dart';
 import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
-import 'package:login_page/viewmodel/splash_viewmodel.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
 
 class CurrentCourseSelectPage1 extends StatelessWidget {
   static Route route() {
@@ -42,17 +42,10 @@ class CurrentCourseSelectState1 extends State<CurrentCourseSelect1> {
       },
       builder: (context, model, child) {
         return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-              color: Color(0xff6d69fb),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            toolbarHeight: 44,
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: Gateway.AppBar(
+            preferredSize: Size.fromHeight(56),
+            backgroundColor: GatewayColor.white,
+            leftButtonExist: true,
           ),
           body: Container(
             color: Colors.white,

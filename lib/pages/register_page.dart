@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/components/Button.dart';
 import 'package:login_page/components/modal_view.dart' as Gateway;
-import 'package:login_page/components/modals/signup_department.dart';
-import 'package:login_page/components/modals/signup_semester.dart';
 import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/pages/course_select_pages/current_select_p1.dart';
 import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/register_viewmodel.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
 import 'package:login_page/components/TextField.dart' as Gateway;
 import 'package:login_page/components/Checkbox.dart' as Gateway;
 
@@ -24,75 +23,14 @@ class RegisterPage extends StatelessWidget {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-              color: Color(0xff6d69fb),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            toolbarHeight: 44,
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: Gateway.AppBar(
+            preferredSize: Size.fromHeight(56),
+            backgroundColor: GatewayColor.white,
+            leftButtonExist: true,
           ),
           body: this._body(context, model),
         );
       },
-    );
-  }
-}
-
-class CourseSelection extends StatefulWidget {
-  String depsemtype;
-  String selectValue = "골라주세요";
-  bool initialState = true;
-
-  CourseSelection({Key key, @required this.depsemtype}) : super(key: key);
-
-  @override
-  _CourseSelectState createState() => new _CourseSelectState();
-}
-
-class _CourseSelectState extends State<CourseSelection> {
-  departmentModal depModal = new departmentModal();
-  semesterModal semModal = new semesterModal();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 39,
-      child: ButtonTheme(
-        buttonColor: Colors.white,
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-            side: BorderSide(
-              color: Color(0xffcccccc),
-            ),
-          ),
-          elevation: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                widget.depsemtype == "1" ? "전공을 선택해주세요" : "이수 학기를 선택해주세요",
-                style: TextStyle(
-                    color:
-                        widget.initialState ? Color(0xffdbdbdb) : Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          onPressed: () => {
-            widget.initialState = false,
-            widget.depsemtype == "1"
-                ? widget.selectValue = depModal.mainBottomSheet(context)
-                : widget.selectValue = semModal.mainBottomSheet(context)
-          },
-        ),
-      ),
     );
   }
 }

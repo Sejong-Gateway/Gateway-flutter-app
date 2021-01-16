@@ -7,17 +7,21 @@ class ButtonColors {
   ButtonColors({
     this.backgroundColor,
     this.textColor,
+    this.borderColor
   });
   final Color backgroundColor;
   final Color textColor;
+  final Color borderColor;
 
   ButtonColors copyWith({
     Color backgroundColor,
     Color textColor,
+    Color borderColor,
   }) {
     return ButtonColors(
       backgroundColor: backgroundColor ?? this.backgroundColor,
       textColor: textColor ?? this.textColor,
+      borderColor: borderColor ?? this.borderColor,
     );
   }
 
@@ -26,6 +30,7 @@ class ButtonColors {
     return copyWith(
       backgroundColor: other.backgroundColor,
       textColor: other.textColor,
+      borderColor: other.borderColor,
     );
   }
 }
@@ -39,10 +44,12 @@ class _ButtonDefaultColors {
   ButtonColors get _positive => ButtonColors(
     textColor: _theme.buttonColor,
     backgroundColor: _theme.primaryColor,
+    borderColor: Colors.transparent,
   );
 
   ButtonColors get _nagative => ButtonColors(
     // ! 정의된 컬러가 없슴니당...
+    borderColor: Colors.transparent,
     textColor: Color(0xff888888),
     backgroundColor: Color(0xfff6f6f6),
   );
@@ -50,6 +57,7 @@ class _ButtonDefaultColors {
   ButtonColors get _disabled => ButtonColors(
     textColor: _theme.buttonColor,
     backgroundColor: _theme.disabledColor,
+    borderColor: Colors.transparent,
   );
 }
 
@@ -113,6 +121,10 @@ class Button extends StatelessWidget {
 
     return Container(
       margin: this.margin,
+      decoration: BoxDecoration(
+        border: Border.all(color: _color().borderColor, width: 1),
+        borderRadius: this.borderRadius,
+      ),
       child: GestureDetector(
         onTap: this.onPressed,
         child: Material.Material(

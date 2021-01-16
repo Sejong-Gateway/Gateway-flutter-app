@@ -43,7 +43,6 @@ class MainViewModel extends BaseViewModel{
 
   int getSubjectCredit(String type){
     return user.completeSubjects.fold(0, (previousValue, element){
-
       if ( element.type == type){
         return previousValue + element.credit;
       }

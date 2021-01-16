@@ -2,12 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/components/indicator_view.dart';
 import 'package:login_page/core/base_screen.dart';
-import 'package:login_page/models/Course_model.dart';
 import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/main_viewmodel.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-
-const GatewayColor = Color(0xff6c63ff);
 
 class CurrentStatusTab extends StatelessWidget {
   static Route route() {
@@ -25,7 +22,7 @@ class CurrentStatusTab extends StatelessWidget {
         model.onInitState();
       },
       builder: (context, model, child) {
-        if (model.user == null ){
+        if (model.user == null) {
           return IndicatorView();
         }
         return SafeArea(
@@ -43,7 +40,9 @@ class CurrentStatusTab extends StatelessWidget {
                     ),
                     ProgressBar(
                       labelText: "교양필수",
-                      currentCredits: model.user.completeSubjects.where((element) => element.type == "교양필수").length,
+                      currentCredits: model.user.completeSubjects
+                          .where((element) => element.type == "교양필수")
+                          .length,
                       totalCredits: 9,
                       noLimit: false,
                     ),
@@ -71,7 +70,7 @@ class CurrentStatusTab extends StatelessWidget {
                     ProgressBar(
                       labelText: "전공필수",
                       currentCredits: model.getSubjectCredit('전공필수'),
-                      totalCredits: 9,
+                      totalCredits: 34,
                       noLimit: false,
                     ),
                     SizedBox(
@@ -179,7 +178,8 @@ class CurrentStatusTab extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Expanded(child: Container(
+                                Expanded(
+                                    child: Container(
                                   height: 33,
                                   decoration: BoxDecoration(
                                     border: Border(
@@ -202,7 +202,8 @@ class CurrentStatusTab extends StatelessWidget {
                     ),
                     Container(
                       child: engScoreActive
-                          ? this._tableScoreInput("TOEIC", true, model.user.toeic, 990)
+                          ? this._tableScoreInput(
+                              "TOEIC", true, model.user.toeic, 990)
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -216,18 +217,22 @@ class CurrentStatusTab extends StatelessWidget {
                               ],
                             ),
                     ),
-                    model.user.opic != null ?
-                    this._tableScoreInput("opic", true, model.user.toeic, 990) :
-                        SizedBox(),
-                    model.user.teps != null ?
-                    this._tableScoreInput("teps", true, model.user.toeic, 990) :
-                    SizedBox(),
-                    model.user.ibt != null ?
-                    this._tableScoreInput("ibt", true, model.user.toeic, 990) :
-                    SizedBox(),
-                    model.user.toeicSpeaking != null ?
-                    this._tableScoreInput("toeicSpeaking", true, model.user.toeic, 990) :
-                    SizedBox(),
+                    model.user.opic != null
+                        ? this._tableScoreInput(
+                            "opic", true, model.user.toeic, 990)
+                        : SizedBox(),
+                    model.user.teps != null
+                        ? this._tableScoreInput(
+                            "teps", true, model.user.toeic, 990)
+                        : SizedBox(),
+                    model.user.ibt != null
+                        ? this._tableScoreInput(
+                            "ibt", true, model.user.toeic, 990)
+                        : SizedBox(),
+                    model.user.toeicSpeaking != null
+                        ? this._tableScoreInput(
+                            "toeicSpeaking", true, model.user.toeic, 990)
+                        : SizedBox(),
                     SizedBox(
                       height: 35,
                     ),
@@ -276,8 +281,9 @@ class CurrentStatusTab extends StatelessWidget {
                           currentCredit.toString(),
                           style: TextStyle(
                             fontSize: 30,
-                            color: GatewayColor,
+                            color: GatewayColor.primary,
                             fontWeight: FontWeight.bold,
+                            height: 1.45,
                           ),
                         ),
                       ),
@@ -287,9 +293,11 @@ class CurrentStatusTab extends StatelessWidget {
                         child: Text(
                           "학점",
                           style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            height: 1.45,
+                          ),
                         ),
                       ),
                     ],
@@ -444,16 +452,20 @@ class CurrentStatusTab extends StatelessWidget {
             )
           ],
         ),
-        this._booktableInput('서양의 역사와 사상', 4, model.user.westernBook ?? 0, false),
-        this._booktableInput('동양의 역사와 사상', 4, model.user.easternBook ?? 0, false),
-        this._booktableInput('동서양의 문학', 4, model.user.literatureBook ?? 0, false),
+        this._booktableInput(
+            '서양의 역사와 사상', 4, model.user.westernBook ?? 0, false),
+        this._booktableInput(
+            '동양의 역사와 사상', 4, model.user.easternBook ?? 0, false),
+        this._booktableInput(
+            '동서양의 문학', 4, model.user.literatureBook ?? 0, false),
         this._booktableInput('과학사상', 1, model.user.scienceBook ?? 0, false),
         this._booktableInput('합계', 13, 4, true, false),
       ],
     );
   }
 
-  Widget _tableScoreInput(String courseLabel, bool Endline, int currentScore, int maxScore) {
+  Widget _tableScoreInput(
+      String courseLabel, bool Endline, int currentScore, int maxScore) {
     return Row(
       children: [
         Container(
@@ -468,16 +480,16 @@ class CurrentStatusTab extends StatelessWidget {
             ),
           ),
           child: Container(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                courseLabel,
-                style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
-              ),
-            )
-          ),
+              child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              courseLabel,
+              style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+            ),
+          )),
         ),
-        Expanded(child: Container(
+        Expanded(
+            child: Container(
           height: 33,
           decoration: BoxDecoration(
             border: Border(
@@ -491,29 +503,22 @@ class CurrentStatusTab extends StatelessWidget {
             color: Color(0xffe5e3ff),
           ),
           child: Container(
-            child: Align(
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                      '${currentScore.toString()}',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xff6c63ff),
-                      )
-                  ),
-                  Text(
-                      ' / ${maxScore.toString()}',
-                      style: TextStyle(
-                        fontSize: 11,
-
-                      )
-                  ),
-                ],
-              )
-            )
-          ),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('${currentScore.toString()}',
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Color(0xff6c63ff),
+                          )),
+                      Text(' / ${maxScore.toString()}',
+                          style: TextStyle(
+                            fontSize: 11,
+                          )),
+                    ],
+                  ))),
         )),
       ],
     );
@@ -678,13 +683,13 @@ class ProgressBar extends StatelessWidget {
   final int totalCredits;
   final bool noLimit;
 
-  ProgressBar(
-      {Key key,
-      @required this.labelText,
-      this.noLimit,
-      this.currentCredits,
-      this.totalCredits})
-      : super(key: key);
+  ProgressBar({
+    Key key,
+    @required this.labelText,
+    this.noLimit,
+    this.currentCredits,
+    this.totalCredits,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -714,38 +719,44 @@ class ProgressBar extends StatelessWidget {
             LinearPercentIndicator(
               width: 230,
               lineHeight: 10,
-              percent: currentCredits / totalCredits,
-              progressColor: GatewayColor,
+              percent: (currentCredits / totalCredits),
+              progressColor: GatewayColor.primary,
             ),
             SizedBox(height: 5),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   currentCredits.toString(),
                   style: TextStyle(
-                      fontSize: 12,
-                      color: GatewayColor,
-                      fontWeight: FontWeight.w500),
+                    fontSize: 12,
+                    color: GatewayColor.primary,
+                    fontWeight: FontWeight.w500,
+                    height: 1.5,
+                  ),
                 ),
                 Text(
                   noLimit == true ? "" : "/",
                   style: TextStyle(
-                      fontSize: 12,
-                      color: Color(0xff989898),
-                      fontWeight: FontWeight.w500),
+                    fontSize: 12,
+                    color: Color(0xff989898),
+                    fontWeight: FontWeight.w500,
+                    height: 1.5,
+                  ),
                 ),
                 Text(
                   noLimit == false ? totalCredits.toString() : "",
                   style: TextStyle(
-                      fontSize: 12,
-                      color: Color(0xff989898),
-                      fontWeight: FontWeight.w500),
+                    fontSize: 12,
+                    color: GatewayColor.subText,
+                    fontWeight: FontWeight.w500,
+                    height: 1.5,
+                  ),
                 ),
                 Text(
-                  noLimit == true ? "학점" : "학점",
-                  style: TextStyle(fontSize: 12, color: Color(0xff989898)),
+                  '학점',
+                  style: TextStyle(fontSize: 12, color: GatewayColor.subText),
                 ),
               ],
             )

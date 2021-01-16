@@ -92,4 +92,6 @@ class RegisterFlow extends ApiService with AuthApiService {
     this.toeicSpeaking = int.parse(toeicSpeaking);
 
   }
+
+  List<String> get getCurrentList => completeSubjects;
 }

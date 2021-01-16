@@ -6,8 +6,6 @@ import 'package:login_page/core/base_screen.dart';
 import 'package:login_page/pages/main_page.dart';
 import 'package:login_page/viewmodel/certificate_req_viewmodel.dart';
 
-const GatewayColor = Color(0xff6d69fb);
-
 class CertificateReqInput extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(
@@ -281,7 +279,7 @@ extension on CertificateReqInput {
                 ),
                 onPressed: () {
                   model.onClickNext();
-                  // Navigator.of(context).push(MainPage.route());
+                  Navigator.of(context).push(MainPage.route());
                 },
                 color: Color(0xff6c63ff),
                 textColor: Colors.white,

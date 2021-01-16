@@ -1,22 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
+import 'package:login_page/utils/gateway_color.dart';
 
 
 //arrow highlight가 안됨 => 과목 토글은 가능
-class certificateguideline extends StatefulWidget {
+class Certificateguideline extends StatefulWidget {
 
   static Route route(){
     return MaterialPageRoute<void>(
-      builder: (_)=>certificateguideline(),
+      builder: (_)=>Certificateguideline(),
     );
   }
 
   @override
-  certificateguidelineState createState() => certificateguidelineState();
+  _CertificateguidelineState createState() => _CertificateguidelineState();
 }
 
-class certificateguidelineState extends State<certificateguideline> {
+class _CertificateguidelineState extends State<Certificateguideline> {
   bool arrowSelect1;
   bool arrowSelect2;
   bool _arrowSelect3;
@@ -64,22 +66,12 @@ class certificateguidelineState extends State<certificateguideline> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-            color: Color(0xff6d69fb),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: Text(
-            "공학인증",
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-          ),
-          toolbarHeight: 44,
-          backgroundColor: Colors.white,
-          elevation: 0,
+        backgroundColor: Colors.white,
+        appBar: Gateway.AppBar(
+          preferredSize: Size.fromHeight(56),
+          backgroundColor: GatewayColor.white,
+          leftButtonExist: true,
+          title: '공학인증',
         ),
         body: ListView(
           children: [

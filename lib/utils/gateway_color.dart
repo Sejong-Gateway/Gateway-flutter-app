@@ -8,4 +8,8 @@ class _GatewayColor{
   final Color hintText = Color(0xffdbdbdb);
   final Color black = Color(0xff0000000);
   final Color inactive = Color(0xffcccccc);
+  final Color subText = Color(0xff888888);
+  final Color white = Color(0xffffffff);
+  final Color typeColor = Color(0xffffcfd4);
+  final Color semesterColor = Color(0xffcfe5f9);
 }

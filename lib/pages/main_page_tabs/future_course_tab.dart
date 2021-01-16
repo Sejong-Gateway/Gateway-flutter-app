@@ -1,184 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/components/indicator_view.dart';
+import 'package:login_page/components/subject_row.dart';
 import 'package:login_page/core/base_screen.dart';
-import 'package:login_page/models/Course_model.dart';
 import 'package:login_page/models/subject_model.dart';
+import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/main_viewmodel.dart';
+import 'package:login_page/components/Button.dart' as Gateway;
 
-class futureCoursetab extends StatelessWidget {
-
-  static Route route(){
+class FutureCoursetab extends StatelessWidget {
+  static Route route() {
     return MaterialPageRoute<void>(
-      builder: (_)=>futureCoursetab(),
+      builder: (_) => FutureCoursetab(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseScreen<MainViewModel>(
-      onModelReady: (model){
+      onModelReady: (model) {
         model.onFutureInit();
       },
-      builder: (context, model, child){
-        return Container(
-          width: 302,
-          height: 55,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36),
-            child: ListView(
-              children: <Widget>[
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: 84,
-                      height: 25,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13.0),
-                          side: BorderSide(
-                            color: Color(0xff6d69fb),
-                          ),
-                        ),
-                        onPressed: () {},
-                        color: Color(0xffffffff),
-                        textColor: Color(0xff6d69fb),
-                        child: Text(
-                          "전공".toUpperCase(),
-                          style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 11,
-                    ),
-                    Container(
-                      width: 84,
-                      height: 25,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13.0),
-                          side: BorderSide(
-                            color: Color(0xff6d69fb),
-                          ),
-                        ),
-                        onPressed: () {},
-                        color: Color(0xffffffff),
-                        textColor: Color(0xff6d69fb),
-                        child: Text(
-                          "교양".toUpperCase(),
-                          style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 23,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      '앞으로 들어야할 과목',
-                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                this._modify("전공","편집"),
-                SizedBox(
-                  height: 9,
-                ),
-                (model.user != null) ?
-                Column(
-                  children: [
-                    ...model.futureSubjectList.map(
-                          (SubjectModel subject) {
-                            return Column(
-                              children: [
-                                Container(
-                                  padding:
-                                  EdgeInsets.fromLTRB(24, 12, 24, 12),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(4),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.16),
-                                        blurRadius: 6,
-                                        offset: Offset(0, 2), // changes position of shadow
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 12,
-                                          ),
-                                          SizedBox(
-                                            width: 120,
-                                            child: Text(
-                                              subject.name,
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xff6c63ff),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 1,
-                                          ),
-                                          Text(
-                                            subject.major,
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                              color: Color(0xff989898),
-                                            ),
-                                            textAlign: TextAlign.start,
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          this._courseTag(subject.type),
-                                          SizedBox(
-                                            width: 4,
-                                          ),
-                                          this._semesterTag(subject.semester),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 11,
-                                ),
-                              ],
-                            );
-                      },
-                    ).toList(),
-                  ],
-                ) : IndicatorView()
-              ],
+      builder: (context, model, child) {
+        return ListView(
+          children: <Widget>[
+            SizedBox(
+              height: 12,
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 36),
+              child: Row(
+                children: [
+                  Gateway.Button(
+                    positiveColors: Gateway.ButtonColors(
+                      backgroundColor: Colors.white,
+                      textColor: GatewayColor.primary,
+                      borderColor: GatewayColor.primary,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    width: 84,
+                    height: 25,
+                    fontSize: 12,
+                    text: "전공",
+                  ),
+                  SizedBox(
+                    width: 11,
+                  ),
+                  Gateway.Button(
+                    positiveColors: Gateway.ButtonColors(
+                      backgroundColor: Colors.white,
+                      textColor: GatewayColor.primary,
+                      borderColor: GatewayColor.primary,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    width: 84,
+                    height: 25,
+                    fontSize: 12,
+                    text: "교양",
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 23,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 36),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    '앞으로 들어야할 과목',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            this._modify("전공", "편집"),
+            SizedBox(
+              height: 9,
+            ),
+            (model.user != null)
+                ? Column(
+                    children: [
+                      ...model.futureSubjectList
+                          .map(
+                            (SubjectModel subject) =>
+                                SubjectRow(subject: subject),
+                          )
+                          .toList(),
+                    ],
+                  )
+                : IndicatorView()
+          ],
         );
       },
     );
@@ -238,30 +155,34 @@ class futureCoursetab extends StatelessWidget {
       ],
     );
   }
+
   Widget _modify(String labelText1, String inselText) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          labelText1,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
-          ),
-        ),
-        InkWell(
-          child: Text(
-            inselText,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 36),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            labelText1,
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: Color(0xff6d69fb),
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
             ),
           ),
-          onTap: () => {},
-        )
-      ],
+          InkWell(
+            child: Text(
+              inselText,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff6d69fb),
+              ),
+            ),
+            onTap: () => {},
+          )
+        ],
+      ),
     );
   }
 }

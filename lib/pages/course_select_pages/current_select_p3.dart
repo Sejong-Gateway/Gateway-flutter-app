@@ -1,20 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/components/Button.dart';
 import 'package:login_page/components/subject_box.dart';
 import 'package:login_page/core/base_screen.dart';
-import 'package:login_page/models/Course_model.dart';
 import 'package:login_page/models/subject_model.dart';
 import 'package:login_page/pages/course_select_pages/future_select_p1.dart';
+import 'package:login_page/utils/gateway_color.dart';
 import 'package:login_page/viewmodel/current_select_viewmodel.dart';
+import 'package:login_page/components/Appbar.dart' as Gateway;
 
-//117번째 줄 PageController.page cannot be accessed before a PageView is built with it. 오류 발생
-//future widget으로 만들라는데.. 그래도 되는건가??
-class currentCourseSelectPage3 extends StatelessWidget {
+class CurrentCourseSelectPage3 extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(
-      builder: (_) => currentCourseSelectPage3(),
+      builder: (_) => CurrentCourseSelectPage3(),
     );
   }
 
@@ -36,17 +34,11 @@ class CurrentCourseSelectState3 extends State<CurrentCourseSelect3> {
       model.initState();
     }, builder: (context, model, child) {
       return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-            color: Color(0xff6d69fb),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          toolbarHeight: 44,
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: Gateway.AppBar(
+          preferredSize: Size.fromHeight(56),
+          backgroundColor: GatewayColor.white,
+          leftButtonExist: true,
+          title: '내정보',
         ),
         body: Container(
           color: Colors.white,
