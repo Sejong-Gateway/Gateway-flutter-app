@@ -11,7 +11,8 @@ class SplashViewModel extends BaseViewModel {
   TokenService _tokenService = diContainer<TokenService>();
 
   void initState(BuildContext context) async {
-    if ( _tokenService.getAccessToken() != null ){
+    String accessToken = await _tokenService.getAccessToken();
+    if ( accessToken != null ){
       Future.delayed(Duration(milliseconds: 1000)).then(
             (_) => Navigator.of(context).pushAndRemoveUntil(
           MainPage.route(), (route) => false,
