@@ -75,7 +75,7 @@ class Button extends StatelessWidget {
     this.onPressed,
     @required this.text,
     this.borderRadius = const BorderRadius.all(Radius.circular(28)),
-    this.fontSize = 14,
+    this.fontSize = 16,
     this.fontWeight = FontWeight.w600,
     this.positiveColors,
     this.negativeColors,
