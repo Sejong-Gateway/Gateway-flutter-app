@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/core/base_screen.dart';
-import 'package:login_page/pages/main_page.dart';
-import 'package:login_page/viewmodel/certificate_req_viewmodel.dart';
+import 'package:gateway/pages/main/main_page.dart';
 
 class CertificateReqInput extends StatelessWidget {
   static Route route() {
@@ -15,32 +13,28 @@ class CertificateReqInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScreen<CertificateReqViewModel>(
-      builder: (context, model, child) {
-        return Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: SvgPicture.asset('asset/Backwardarrow.svg'),
-              color: Color(0xff6d69fb),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            toolbarHeight: 44,
-            backgroundColor: Colors.white,
-            elevation: 0,
-          ),
-          body: this._body(context, model),
-        );
-      },
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: SvgPicture.asset('asset/Backwardarrow.svg'),
+          color: Color(0xff6d69fb),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        toolbarHeight: 44,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: this._body(context),
     );
   }
 }
 
 extension on CertificateReqInput {
-  Widget _body(BuildContext context, CertificateReqViewModel model) {
+  Widget _body(BuildContext context) {
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 36),
@@ -78,19 +72,19 @@ extension on CertificateReqInput {
           SizedBox(
             height: 26,
           ),
-          this._textField('서양의 역사와 사상', '권', model.westernBook),
-          SizedBox(
-            height: 15,
-          ),
-          this._textField('동양의 역사와 사상', '권', model.easternBook),
-          SizedBox(
-            height: 15,
-          ),
-          this._textField('동서양의 문학', '권', model.literatureBook),
-          SizedBox(
-            height: 15,
-          ),
-          this._textField('과학 사상', '권', model.scienceBook),
+          // this._textField('서양의 역사와 사상', '권', model.westernBook),
+          // SizedBox(
+          //   height: 15,
+          // ),
+          // this._textField('동양의 역사와 사상', '권', model.easternBook),
+          // SizedBox(
+          //   height: 15,
+          // ),
+          // this._textField('동서양의 문학', '권', model.literatureBook),
+          // SizedBox(
+          //   height: 15,
+          // ),
+          // this._textField('과학 사상', '권', model.scienceBook),
           SizedBox(
             height: 23,
           ),
@@ -120,7 +114,7 @@ extension on CertificateReqInput {
           SizedBox(
             height: 15,
           ),
-          this._textField('봉사시간', '시간', model.volunteerTime),
+          // this._textField('봉사시간', '시간', model.volunteerTime),
           SizedBox(
             height: 23,
           ),
@@ -166,7 +160,7 @@ extension on CertificateReqInput {
           SizedBox(
             height: 8,
           ),
-          this._engTable(context, model),
+          this._engTable(context),
         ],
       ),
     );
@@ -216,7 +210,7 @@ extension on CertificateReqInput {
     );
   }
 
-  Widget _engTable(context, CertificateReqViewModel model) {
+  Widget _engTable(context) {
     return Column(
       children: [
         Row(
@@ -256,11 +250,11 @@ extension on CertificateReqInput {
             ),
           ],
         ),
-        this._tableScoreInput("TOEIC", 700, model.toeic),
-        this._tableScoreInput("IBT", 700, model.ibt),
-        this._tableScoreInput("TEPS", 700, model.teps),
-        this._tableScoreInput("OPIc", 700, model.opic),
-        this._tableScoreInput("TOEIC Speaking", 700, model.toeicSpeaking),
+        // this._tableScoreInput("TOEIC", 700, model.toeic),
+        // this._tableScoreInput("IBT", 700, model.ibt),
+        // this._tableScoreInput("TEPS", 700, model.teps),
+        // this._tableScoreInput("OPIc", 700, model.opic),
+        // this._tableScoreInput("TOEIC Speaking", 700, model.toeicSpeaking),
         SizedBox(
           height: 31,
         ),
@@ -278,8 +272,6 @@ extension on CertificateReqInput {
                   ),
                 ),
                 onPressed: () {
-                  model.onClickNext();
-                  Navigator.of(context).push(MainPage.route());
                 },
                 color: Color(0xff6c63ff),
                 textColor: Colors.white,

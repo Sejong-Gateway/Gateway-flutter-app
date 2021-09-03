@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/core/di_container.dart';
-import 'package:login_page/pages/splash_page.dart';
-import 'package:login_page/utils/gateway_color.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gateway/blocs/subject_select/subject_list_select_cubit.dart';
+import 'package:gateway/pages/common/splash_page.dart';
+import 'package:gateway/pages/main/main_page.dart';
+import 'package:gateway/utils/gateway_color.dart';
 
 Future<void> main() async {
-  setupDiContainer();
-  runApp(MyApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (_) => SubjectListSelectCubit(),
+    ),
+  ], child: GatewayApp()));
 }
 
-class MyApp extends StatelessWidget {
+class GatewayApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

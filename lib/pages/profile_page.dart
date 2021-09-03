@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:login_page/utils/gateway_color.dart';
-import 'package:login_page/components/Appbar.dart' as Gateway;
+import 'package:gateway/utils/gateway_color.dart';
+import 'package:gateway/components/Appbar.dart' as Gateway;
 
 class ProfilePage extends StatelessWidget {
   static Route route() {

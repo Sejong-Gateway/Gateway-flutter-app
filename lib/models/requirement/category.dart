@@ -18,7 +18,7 @@ class Category {
       uuid: json['uuid'] as String ?? "",
       title: json['title'] as String ?? "",
       description: json['description'] as String ?? "",
-      requirements: (json['requirements'] as List<dynamic>)
+      requirements: (json['requirements'] as List<dynamic> ?? [])
           .map<Requirement>((json) => Requirement.fromJson(json))
           .toList(),
     );

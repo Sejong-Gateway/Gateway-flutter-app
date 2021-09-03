@@ -12,4 +12,5 @@ class _GatewayColor{
   final Color white = Color(0xffffffff);
   final Color typeColor = Color(0xffffcfd4);
   final Color semesterColor = Color(0xffcfe5f9);
+  final Color dividerColor = Color(0xffefefef);
 }

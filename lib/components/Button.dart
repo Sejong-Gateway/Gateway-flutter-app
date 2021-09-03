@@ -84,7 +84,7 @@ class Button extends StatelessWidget {
     this.type = ButtonType.positive,
     this.splashColor = Colors.transparent,
     this.highlightColor = Colors.transparent,
-    this.hoverColor = Colors.transparent,
+    this.hoverColor = Colors.transparent, this.boxShadow = const [],
   }) : super(key: key);
 
   final String text;
@@ -102,6 +102,7 @@ class Button extends StatelessWidget {
   final ButtonColors positiveColors;
   final ButtonColors negativeColors;
   final ButtonColors disabledColors;
+  final List<BoxShadow> boxShadow;
 
   final Color splashColor;
   final Color highlightColor;
@@ -124,6 +125,7 @@ class Button extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: _color().borderColor, width: 1),
         borderRadius: this.borderRadius,
+        boxShadow: this.boxShadow,
       ),
       child: GestureDetector(
         onTap: this.onPressed,

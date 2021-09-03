@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as Material;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:login_page/utils/gateway_color.dart';
+import 'package:gateway/utils/gateway_color.dart';
 
 class AppBar extends StatelessWidget implements PreferredSizeWidget {
   AppBar({
@@ -55,7 +55,7 @@ class AppBar extends StatelessWidget implements PreferredSizeWidget {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 18, 0, 18),
+                  padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
                   child: SvgPicture.asset(
                     "asset/icons/backward-arrow.svg",
                   ),
